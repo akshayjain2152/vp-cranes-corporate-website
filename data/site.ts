@@ -22,10 +22,10 @@ export const services: Service[] = [
 ];
 
 export const strengths = [
-  { title: "Safety-led execution", text: "Disciplined planning, trained crews and practical site controls for every lift.", Icon: ShieldCheck },
-  { title: "Experienced team", text: "A hands-on operations team shaped by demanding industrial environments.", Icon: HardHat },
-  { title: "Purpose-fit equipment", text: "Mobile, crawler and specialised options aligned to the load and site.", Icon: CircleGauge },
-  { title: "Clear accountability", text: "A direct, transparent partnership from the first brief to final placement.", Icon: Handshake },
+  { title: "Safety-led execution", text: "Meticulous lift planning, trained operators and disciplined site controls ensure every lift is executed safely and efficiently.", Icon: ShieldCheck },
+  { title: "Experienced Professionals", text: "A skilled operations team with extensive experience across construction, infrastructure and industrial projects.", Icon: HardHat },
+  { title: "Purpose-Built Equipment", text: "A versatile fleet of mobile, crawler and specialised cranes selected to match the load, site conditions and project requirements.", Icon: Construction },
+  { title: "Clear Accountability", text: "Clear communication, dependable execution and complete accountability from project planning to successful completion.", Icon: Handshake },
 ];
 
 export const clients = ["Phil Group, Bilaspur", "BS Sponge, Raigarh", "MSP, Raigarh", "S K Mahendra, Korba", "Sarens, New Delhi", "Surana Earth Movers Company, Kolkata", "RIPL, Raipur", "SKS Ispat and Power, Raipur", "Singhal Enterprises, Raigarh", "Basudev, Bilaspur", "PAPL, Khandagiri", "Karnikripa, Tumgaon", "McNally Bharat Engg. Co. Ltd.", "BALCO, Korba"];
