@@ -1,87 +1,112 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+"use client";
 
-:root { --ink:#172126; --ink-2:#223039; --paper:#f5f3ee; --cream:#ece8df; --line:rgba(23,33,38,.14); --muted:#647075; --red:#7d211c; --red-bright:#a7352d; --gold:#cba66d; --white:#fffefa; --font-manrope:'Manrope',Arial,sans-serif; --font-playfair:'Playfair Display',Georgia,serif; }
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-manrope),Arial,sans-serif;font-size:15px;line-height:1.65} a{color:inherit;text-decoration:none} button,input,textarea{font:inherit} button{cursor:pointer} ::selection{background:var(--red);color:#fff}.container{width:min(1180px,calc(100% - 48px));margin:0 auto}.section{padding:132px 0}.eyebrow{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin:0 0 22px;display:flex;gap:10px;align-items:center}.eyebrow:before{content:"";height:1px;width:27px;background:currentColor}.eyebrow-light{color:#e8c597}.section-heading{max-width:650px}.section-heading h2,.gallery-intro h2{font-family:var(--font-playfair),Georgia,serif;letter-spacing:-.045em;font-size:clamp(2.5rem,4.2vw,4.3rem);line-height:1.04;font-weight:500;margin:0}.section-copy{color:var(--muted);max-width:560px;margin:25px 0 0;font-size:16px;line-height:1.45}.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:1px solid var(--red);padding:15px 20px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;transition:background .25s,transform .25s,border-color .25s}.button:hover{background:var(--red-bright);border-color:var(--red-bright);transform:translateY(-2px)}.text-link{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:6px}.light{color:#fff}
+import Image from "next/image";
+import { FormEvent, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ArrowUp, Check, ChevronRight, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { clients, companySchema, contact, gallery, navigation, services, stats, strengths } from "@/data/site";
+import { Button, Reveal, SectionHeading } from "@/components/ui";
 
-/* navigation */.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:50;color:#fff;border-bottom:1px solid transparent;transition:background .35s,color .35s,border .35s,box-shadow .35s}.nav-wrap.nav-scrolled{background:rgba(245,243,238,.94);backdrop-filter:blur(16px);color:var(--ink);border-color:var(--line);box-shadow:0 4px 24px rgba(12,18,20,.04)}.nav{height:84px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:10px;min-width:170px}.brand img{width:43px;height:43px;object-fit:contain;border-radius:50%;background:#eee9df}.brand>span{font-size:21px;line-height:1;font-weight:400;letter-spacing:.03em}.brand b{font-weight:800}.brand small{display:block;font-size:9px;font-weight:800;letter-spacing:.17em;margin-top:6px;opacity:.75}.desktop-nav{display:flex;align-items:center;justify-content:center;gap:23px;flex:1}.desktop-nav a{font-size:12px;font-weight:800;letter-spacing:.055em;text-transform:uppercase;opacity:.8;position:relative;padding:7px 0}.desktop-nav a:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:1px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .25s}.desktop-nav a:hover:after,.desktop-nav .active:after{transform:scaleX(1);transform-origin:left}.nav-phone{font-size:11px;font-weight:800;display:flex;align-items:center;gap:8px;white-space:nowrap}.nav-whatsapp{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:42px;
-    height:42px;
-    margin-left:auto;
-    color:#25D366;
-    text-decoration:none;
-    border-radius:50%;
-    transition:transform .25s ease,color .25s ease;
+function Logo({ light = false }: { light?: boolean }) { return <a href="#home" className="brand" aria-label="V P CRANES home"><Image src="/images/logo.png" alt="V P CRANES" width={46} height={46} priority /><span className={light ? "brand-light" : ""}>V P <b>CRANES</b><small>HEAVY LIFTING SOLUTIONS</small></span></a>; }
+
+function Navbar() {
+  const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false); const [active, setActive] = useState("#home");
+  useEffect(() => { const update = () => { setScrolled(window.scrollY > 30); const sections = navigation.map(([, href]) => document.querySelector(href)); const current = sections.find((el) => el && el.getBoundingClientRect().top < window.innerHeight * .42 && el.getBoundingClientRect().bottom > window.innerHeight * .42); if (current) setActive(`#${current.id}`); }; update(); window.addEventListener("scroll", update, { passive: true }); return () => window.removeEventListener("scroll", update); }, []);
+  const close = () => setOpen(false);
+  return <header className={`nav-wrap ${scrolled ? "nav-scrolled" : ""}`}><nav className="nav container" aria-label="Main navigation"><Logo light={!scrolled} /><div className="desktop-nav">{navigation.map(([label, href]) => <a key={href} href={href} className={active === href ? "active" : ""}>{label}</a>)}</div><a
+  className="nav-phone"
+  href={contact.whatsapp}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp"
+>
+  <FaWhatsapp size={24} />
+</a><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></nav><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}><div className="container">{navigation.map(([label, href], index) => <motion.a key={href} href={href} onClick={close} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * .04 }}>{label}<ChevronRight size={17} /></motion.a>)}<a className="button" href={contact.phoneHref}>Call our team<Phone size={16}/></a></div></motion.div>}</AnimatePresence></header>;
 }
 
-.nav-whatsapp svg{
-    width:26px;
-    height:26px;
+function Hero() { return <section id="home" className="hero"><div className="hero-media" /><div className="hero-grid"/><div className="container hero-content"><Reveal><h1>Decades of lifting<br/><em>the impossible.</em></h1><p className="hero-copy">Delivering trusted heavy lifting and crane solutions for infrastructure, industrial, and construction projects across India.</p><div className="hero-actions"><Button href="#services">Explore our capabilities</Button></div></Reveal></div></section> }
+
+function ServiceGrid() { return <section id="services" className="section services"><div className="container"><SectionHeading eyebrow="What we do" title="Complete Lifting Solutions. One Trusted Partner.">From crane rental to equipment procurement, we deliver comprehensive lifting solutions tailored to the needs of construction, infrastructure, and industrial projects.</SectionHeading><div className="service-grid">{services.map(({ title, eyebrow, description, Icon, image }, i) => <Reveal key={title} delay={i * .08}><article className="service-card"><div className="service-image"><Image src={image} alt="V P CRANES equipment at work" fill sizes="(max-width: 850px) 100vw, 33vw" /><span>{eyebrow}</span></div><div className="service-body">
+  <div className="service-header">
+    <h3>{title}</h3>
+
+    <div className="icon-box">
+      <Icon size={21} />
+    </div>
+  </div>
+
+  <p>{description}</p>
+
+  <a href="#contact" aria-label={`Discuss ${title}`}>
+    <ArrowRight size={20} />
+  </a>
+</div></article></Reveal>)}</div></div></section> }
+
+function About() { return <section id="about" className="section about"><div className="container about-grid"><Reveal className="about-photo"><Image src="https://www.vpcranes.com/images/29.jpg" alt="V P CRANES lifting equipment" fill sizes="(max-width: 900px) 100vw, 50vw"/><div className="photo-note"><b>Built on</b><span>field experience</span></div></Reveal><div className="about-copy"><SectionHeading eyebrow="About Us" title="Where Experience Meets Precision.">Established in 2012, VP CRANES has earned a reputation as a trusted provider of heavy lifting and crane solutions across India. Backed by a modern fleet and an experienced operations team, we deliver safe, efficient, and technically precise lifting solutions tailored to the needs of infrastructure, industrial, and construction projects.</SectionHeading><Reveal><p>We proudly serve EPC contractors, infrastructure developers, and industrial clients with lifting solutions built on precision, reliability, and accountability. Every project is carefully planned and executed to meet the highest standards of safety and efficiency, ensuring dependable performance even in the most demanding lifting operations.</p><div className="values"><div><Check/> <span><b>Mission</b>To deliver safe, reliable, and efficient lifting solutions through technical excellence, operational integrity, and an unwavering commitment to customer satisfaction.</span></div><div><Check/> <span><b>Vision</b>To be India's most trusted and preferred partner for heavy lifting and crane solutions, recognised for safety, reliability, and operational excellence.</span></div></div></Reveal></div></div></section> }
+
+function Statistics() { return <section className="stat-section"><div className="container stats">{stats.map(([number, label]) => <Reveal key={label}><div><strong>{number}</strong><span>{label}</span></div></Reveal>)}</div></section> }
+
+function WhyUs() { return <section id="why-us" className="section why"><div className="container"><SectionHeading eyebrow="Why Us" title="Built on Trust. Driven by Excellence.">Every project is backed by experienced professionals, dependable equipment, and a commitment to safety, precision, and operational excellence—ensuring reliable results from planning to completion.</SectionHeading><div className="strength-grid">{strengths.map(({ title, text, Icon }, i) => <Reveal key={title} delay={i * .06}><article><Icon size={24} strokeWidth={1.4}/><span>0{i + 1}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div></section> }
+
+function Clientele() { return <section id="clientele" className="section clientele"><div className="container"><SectionHeading eyebrow="Trusted Across Industries" title="Building Lasting Partnerships Through Excellence.."/><div className="client-layout"><Reveal><blockquote><Quote size={36}/><p>“We believe lasting partnerships are built through integrity, technical excellence, and consistently delivering on our commitments.”</p><footer>V P CRANES <span>·</span> Built on Trust</footer></blockquote></Reveal><div className="client-grid">{clients.map((client, i) => <Reveal key={client} delay={i * .025}><div><span>{client.split(" ").filter(Boolean).slice(0, 2).map((word) => word[0]).join("")}</span><p>{client}</p></div></Reveal>)}</div></div></div></section> }
+
+function Gallery() { return <section className="gallery" aria-label="V P CRANES project gallery"><div className="gallery-intro"><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-grid">{gallery.map((image, i) => <div className={`gallery-image gallery-${i + 1}`} key={image}><Image src={`https://www.vpcranes.com/images/${image}`} alt="V P CRANES field project" fill sizes="(max-width: 700px) 50vw, 25vw"/></div>)}</div></section> }
+
+function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
+  return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small>Add the verified address in <code>data/site.ts</code> before launch.</span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button>{sent && <p className="form-success"><Check size={16}/> Thank you. Your enquiry is ready for our team.</p>}</form></Reveal></div></section> }
+
+function MapSection() {
+  return (
+    <section id="map" className="map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2069840905733!2d81.39109577535179!3d21.223639281056474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a29225b3db9823d%3A0x32d2ddff7431d70f!2sV.P.%20CRANES!5e0!3m2!1sen!2sin!4v1785218028414!5m2!1sen!2sin"
+        width="100%"
+        height="450"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+        title="V P CRANES Location"
+      />
+    </section>
+  );
 }
+function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Delivering safe, reliable, and efficient heavy lifting solutions with precision, professionalism, and a commitment to excellence.</p></div><div>
+  <h3>Services</h3>
 
-.nav-whatsapp:hover{
-    transform:scale(1.12);
-    color:#1ebe5d;
-}.menu-button{display:none;background:none;border:0;color:inherit;padding:6px}.mobile-menu{display:none}
+  <a href="#services">Crane Rental</a>
 
-/* hero */.hero{height:max(760px,100svh);min-height:660px;background:var(--ink);color:#fff;position:relative;overflow:hidden;display:flex;align-items:center}.hero-media{position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,22,26,.91) 8%,rgba(15,22,25,.68) 46%,rgba(15,22,25,.2)),url('https://www.vpcranes.com/images/29.jpg') center/cover;filter:saturate(.65) contrast(1.07);transform:scale(1.02)}.hero-grid{position:absolute;inset:0;opacity:.18;background-image:linear-gradient(rgba(255,255,255,.17) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.17) 1px,transparent 1px);background-size:82px 82px;mask-image:linear-gradient(90deg,black,transparent 67%)}.hero-content{position:relative;padding-top:80px}.hero h1{font-family:var(--font-playfair),Georgia,serif;font-size:clamp(3.9rem,7.1vw,7.8rem);font-weight:500;letter-spacing:-.065em;line-height:.91;margin:0;max-width:850px}.hero h1 em,.gallery-intro em{font-weight:400;color:#e3bd86}.hero-copy{font-size:17px;line-height:1.7;max-width:500px;color:rgba(255,255,255,.76);margin:31px 0}.hero-actions{display:flex;align-items:center;gap:25px}.hero-stamp{position:absolute;right:8%;bottom:-86px;width:207px;height:207px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;transform:rotate(-13deg)}.hero-stamp:before{content:"";position:absolute;inset:11px;border:1px solid rgba(255,255,255,.25);border-radius:inherit}.hero-stamp span{font-family:var(--font-playfair),Georgia,serif;color:var(--gold);font-size:81px;letter-spacing:-.1em}.hero-stamp p{position:absolute;bottom:37px;right:24px;font-size:8px;line-height:1.3;text-transform:uppercase;letter-spacing:.13em;font-weight:800}.scroll-cue{position:absolute;bottom:26px;left:max(24px,calc((100% - 1180px)/2));font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;display:flex;gap:11px;align-items:center}.scroll-cue span{display:block;width:37px;height:1px;background:#fff}
+  <a href="#services">Pre-Owned Cranes & Parts</a>
 
-/* about and stats */.about{background:var(--paper)}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,8vw,132px);align-items:center}.about-photo{min-height:600px;position:relative;overflow:hidden}.about-photo img{object-fit:cover;filter:saturate(.75)}.photo-note{position:absolute;bottom:0;right:0;background:var(--paper);padding:26px 0 0 26px;display:flex;flex-direction:column;gap:3px}.photo-note b{font-size:10px;text-transform:uppercase;letter-spacing:.1em}.photo-note span{font-family:var(--font-playfair),Georgia,serif;font-size:21px}.about-copy>.section-heading{margin-bottom:29px}.about-copy>div>p{color:var(--muted);max-width:530px;margin-top:18px;margin-bottom:0;}.values{border-top:1px solid var(--line);margin-top:31px;padding-top:25px;display:grid;gap:17px}.values div{display:flex;gap:11px;font-size:15px;color:var(--muted);line-height:1.7;}.values svg{color:var(--red);width:17px;min-width:17px}.values b{display:block;color:var(--ink);font-size:14px;text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px}.stat-section{background:var(--ink);color:#fff;padding:57px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr)}.stats>div{padding:0 27px;border-left:1px solid rgba(255,255,255,.2)}.stats>div:first-child{padding-left:0;border-left:0}.stats strong{display:block;font-family:var(--font-playfair),Georgia,serif;font-size:48px;line-height:1;color:#e8c597;letter-spacing:-.06em}.stats span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;margin-top:12px;color:rgba(255,255,255,.7)}
+  <a href="#services">New Crane Procurement</a>
+</div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} V P CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
-/* services */.services{background:var(--cream)}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:53px}.service-card{height:100%;background:var(--paper);border:1px solid rgba(23,33,38,.08);transition:transform .3s,box-shadow .3s}.service-card:hover{transform:translateY(-7px);box-shadow:0 20px 36px rgba(23,33,38,.09)}.service-image{height:205px;position:relative;overflow:hidden;background:var(--ink)}.service-image img{object-fit:cover;filter:grayscale(30%) saturate(.7);transition:transform .55s}.service-card:hover .service-image img{transform:scale(1.07)}.service-image:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,28,30,.6),transparent)}.service-image span{position:absolute;z-index:1;bottom:16px;left:17px;color:#fff;font-size:9px;letter-spacing:.13em;text-transform:uppercase;font-weight:800}.service-body{position:relative;padding:26px 27px 31px;padding-right:90px;}.icon-box{
-    position:absolute;
-    top:26px;
-    right:27px;
+export default function SiteShell() {
+  return (
+    <>
+      <Navbar />
 
-    width:43px;
-    height:43px;
+      <main>
+        <Hero />
+        <ServiceGrid />
+        <About />
+        <Statistics />
+        <WhyUs />
+        <Clientele />
+        <Gallery />
+        <Contact />
+        <MapSection />
+      </main>
 
-    display:grid;
-    place-items:center;
+      <Footer />
 
-    background:var(--ink);
-    color:#e8c597;
-
-    z-index:2;
-}.service-header{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:18px;
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(companySchema),
+        }}
+      />
+    </>
+  );
 }
-
-.service-header h3{
-    margin:0;
-}.service-body h3,.strength-grid h3{font-family:var(--font-playfair),Georgia,serif;font-size:25px;line-height:1.1;font-weight:500;letter-spacing:-.03em;margin:0}.service-body p{font-size:15px;color:var(--muted);line-height:1.7;min-height:88px;margin:14px 0 21px}.service-body>a{color:var(--red);display:inline-flex;border-bottom:1px solid currentColor;padding-bottom:6px}
-
-/* why and clients */.why{background:var(--paper)}.strength-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px;border-top:1px solid var(--line)}.strength-grid article{position:relative;padding:30px 26px 11px 0;border-right:1px solid var(--line);min-height:230px}.strength-grid article:not(:first-child){padding-left:26px}.strength-grid article:last-child{border-right:0}.strength-grid svg{color:var(--red);margin-bottom:32px}.strength-grid span{position:absolute;right:20px;top:30px;font-family:var(--font-playfair),Georgia,serif;color:rgba(23,33,38,.26);font-size:20px}.strength-grid p{color:var(--muted);font-size:16px;line-height:1.45;max-width:240px;margin-top:8px;}.clientele{background:#ded8cc}.client-layout{display:grid;grid-template-columns:.73fr 1.27fr;gap:clamp(36px,7vw,95px);margin-top:50px;align-items:start}.client-layout blockquote{margin:0;background:var(--ink);color:#fff;padding:40px;min-height:300px}.client-layout blockquote svg{color:#e8c597}.client-layout blockquote p{font-family:var(--font-playfair),Georgia,serif;font-size:23px;line-height:1.25;letter-spacing:-.03em;margin:31px 0}.client-layout blockquote footer{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:rgba(255,255,255,.65)}.client-layout blockquote footer span{color:#e8c597}.client-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.client-grid>div{aspect-ratio:1.26;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;background:rgba(255,254,250,.55);border:1px solid rgba(23,33,38,.08);padding:12px;transition:background .3s,transform .3s}.client-grid>div:hover{background:var(--paper);transform:translateY(-3px)}.client-grid span{font-family:var(--font-playfair),Georgia,serif;font-size:26px;font-weight:700;letter-spacing:-.09em;color:var(--red)}.client-grid p{font-size:8px;line-height:1.35;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin:10px 0 0;max-width:115px}
-
-/* gallery / contact */.gallery{min-height:610px;background:var(--ink);color:#fff;display:grid;grid-template-columns:34% 66%;position:relative}.gallery-intro{padding:clamp(70px,10vw,140px) 50px max(50px,9vw);position:relative;z-index:1}.gallery-intro h2{font-size:clamp(2.8rem,4.5vw,4.6rem);margin-bottom:29px}.gallery-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;padding:6px 6px 6px 0}.gallery-image{min-height:200px;position:relative;overflow:hidden}.gallery-image img{object-fit:cover;filter:saturate(.65) contrast(1.05);transition:transform .6s,filter .4s}.gallery-image:hover img{transform:scale(1.06);filter:saturate(1)}.gallery-1{grid-row:span 2}.gallery-4{grid-column:span 2}.contact{background:var(--paper)}.contact-grid{display:grid;grid-template-columns:1fr .88fr;gap:clamp(46px,9vw,130px)}.contact-details{margin-top:38px;border-top:1px solid var(--line)}.contact-details>a,.contact-details>div{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}.contact-details svg{color:var(--red);width:18px}.contact-details small{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.11em;font-weight:800;color:var(--ink);margin-bottom:5px}.form-card{background:var(--ink);padding:40px;color:#fff}.form-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:20px;margin-bottom:26px;font-family:var(--font-playfair),Georgia,serif;font-size:25px}.form-header i{height:9px;width:9px;border-radius:99px;background:#e8c597}.form-card label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:rgba(255,255,255,.70);margin:17px 0}.form-card input,.form-card textarea{width:100%;display:block;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.27);border-radius:0;color:#fff;padding:10px 0;outline:none;transition:border-color .2s}.form-card input:focus,.form-card textarea:focus{border-color:#e8c597}.form-card input::placeholder,.form-card textarea::placeholder{color:rgba(255,255,255,.40);font-size:14px;text-transform:none;letter-spacing:0}.form-card textarea{resize:vertical}.form-card .button{width:100%;margin-top:11px}.form-success{font-size:15px;color:#e8c597;display:flex;align-items:center;gap:7px;margin:18px 0 0}
-
-/* footer */.footer{background:#10191d;color:#fff;padding:68px 0 20px}.footer-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:70px;
-    align-items:flex-start;
-}.footer .brand img{background:#eee9df}.brand-light{color:#fff}.footer-grid>div>p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.58);max-width:300px;margin:23px 0}.footer-grid h3{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#e8c597;margin:6px 0 17px}.footer-grid>div:not(:first-child){display:flex;flex-direction:column;align-items:flex-start;gap:10px}.footer-grid>div>a{font-size:15px;color:rgba(255,255,255,.72);transition:color .2s}.footer-grid>div>a:hover{color:#e8c597}.footer-map{display:flex;align-items:center;gap:8px;border-bottom:1px solid currentColor;padding-bottom:4px}.footer-bottom{border-top:1px solid rgba(255,255,255,.13);margin-top:55px;padding-top:18px;display:flex;justify-content:space-between;color:rgba(255,255,255,.43);font-size:9px;text-transform:uppercase;letter-spacing:.09em}.map{
-    width:100%;
-    height:450px;
-    overflow:hidden;
-    background:#f5f3ee;
-}
-
-.map iframe{
-    width:100%;
-    height:100%;
-    border:0;
-    display:block;
-}.back-top{position:fixed;z-index:30;right:23px;bottom:23px;width:42px;height:42px;border:1px solid rgba(255,255,255,.35);background:var(--red);color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.2)}
-
-@media(max-width:970px){.desktop-nav{gap:13px}.nav-phone{display:none}.hero-stamp{right:3%}.about-grid,.contact-grid{gap:50px}.footer-grid{gap:30px}.gallery{grid-template-columns:39% 61%}}
-@media(max-width:760px){.container{width:min(100% - 36px,1180px)}.section{padding:82px 0}.nav{height:70px}.desktop-nav,.nav-phone{display:none}.menu-button{display:block;margin-left:auto}.mobile-menu{display:block;position:absolute;top:70px;left:0;right:0;background:var(--paper);color:var(--ink);border-bottom:1px solid var(--line);box-shadow:0 12px 25px rgba(0,0,0,.08)}.mobile-menu .container{padding:15px 0 21px}.mobile-menu a:not(.button){display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}.mobile-menu .button{width:100%;margin-top:18px}.hero{height:720px;min-height:0}.hero-media{background-position:63% center;background-image:linear-gradient(90deg,rgba(13,22,26,.91),rgba(15,22,25,.54)),url('https://www.vpcranes.com/images/29.jpg')}.hero-content{padding-top:85px}.hero h1{font-size:clamp(3.4rem,15.5vw,5.5rem);line-height:.94}.hero-copy{font-size:15px;margin:24px 0}.hero-actions{gap:19px;align-items:flex-start;flex-direction:column}.hero-stamp{display:none}.scroll-cue{left:18px}.about-grid,.contact-grid{grid-template-columns:1fr}.about-photo{min-height:420px}.about-copy{padding-top:0}.stats{grid-template-columns:repeat(2,1fr);gap:28px}.stats>div{border-left:1px solid rgba(255,255,255,.2);padding-left:18px}.stats>div:nth-child(3){padding-left:0;border-left:0}.stats strong{font-size:39px}.service-grid{grid-template-columns:1fr;gap:16px}.service-image{height:215px}.service-body p{min-height:0}.strength-grid{grid-template-columns:1fr 1fr}.strength-grid article:nth-child(2){border-right:0}.strength-grid article:nth-child(3){padding-left:0}.strength-grid article{min-height:220px}.client-layout{grid-template-columns:1fr}.client-layout blockquote{min-height:0}.client-grid{grid-template-columns:repeat(2,1fr)}.gallery{display:block}.gallery-intro{padding:72px 18px 40px}.gallery-grid{padding:0 6px 6px;min-height:440px;grid-template-columns:1fr 1fr}.gallery-1{grid-row:span 2}.gallery-4{grid-column:span 1}.gallery-6{display:none}.form-card{padding:28px 22px}.footer-grid{grid-template-columns:1fr 1fr;gap:38px}.footer-grid>div:first-child{grid-column:span 2}.footer-bottom{margin-top:38px;display:block;line-height:1.8}.footer-bottom p{margin:0}}
-@media(max-width:390px){.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:span 1}.section-heading h2,.gallery-intro h2{font-size:2.5rem}.client-grid{gap:5px}.client-grid span{font-size:22px}.client-grid p{font-size:7px}.hero h1{font-size:3.25rem}}
