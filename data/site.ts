@@ -11,7 +11,7 @@ export const contact = {
 };
 
 export const navigation = [
-  ["Home", "#home"], ["What We Do", "#services"], ["About Us", "#about"], ["Why VP CRANES", "#why-us"], ["Clientele", "#clientele"], ["Contact", "#contact"],
+  ["Home", "#home"], ["What We Do", "#services"], ["About Us", "#about"], ["Why VP CRANES", "#why-us"], ["Our Clients", "#clientele"], ["Contact", "#contact"],
 ] as const;
 
 type Service = { title: string; eyebrow: string; description: string; Icon: LucideIcon; image: string };
