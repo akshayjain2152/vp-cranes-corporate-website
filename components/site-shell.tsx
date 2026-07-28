@@ -58,7 +58,15 @@ function MapSection() {
     </section>
   );
 }
-function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Dependable heavy lifting, crane rental and equipment solutions for the work that matters.</p></div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} VP CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
+function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Dependable heavy lifting, crane rental and equipment solutions for the work that matters.</p></div><div>
+  <h3>Services</h3>
+
+  <a href="#services">Crane Rental</a>
+
+  <a href="#services">Pre-Owned Cranes & Parts</a>
+
+  <a href="#services">New Crane Procurement</a>
+</div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} VP CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
 export default function SiteShell() {
   return (
