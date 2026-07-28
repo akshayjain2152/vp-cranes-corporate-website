@@ -49,7 +49,7 @@ function Statistics() { return <section className="stat-section"><div className=
 
 function WhyUs() { return <section id="why-us" className="section why"><div className="container"><SectionHeading eyebrow="Why Us" title="Built on Trust. Driven by Excellence.">Every project is backed by experienced professionals, dependable equipment, and a commitment to safety, precision, and operational excellence—ensuring reliable results from planning to completion.</SectionHeading><div className="strength-grid">{strengths.map(({ title, text, Icon }, i) => <Reveal key={title} delay={i * .06}><article><Icon size={24} strokeWidth={1.4}/><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div></section> }
 
-function Clientele() { return <section id="clientele" className="section clientele"><div className="container"><SectionHeading eyebrow="Trusted Across Industries" title="Building Lasting Partnerships Through Excellence.."/><div className="client-layout"><Reveal><blockquote><Quote size={36}/><p>“We believe lasting partnerships are built through integrity, technical excellence, and consistently delivering on our commitments.”</p><footer>V P CRANES <span>·</span> Built on Trust</footer></blockquote></Reveal><div className="client-grid">{clients.map((client, i) => <Reveal key={client} delay={i * .025}><div><span>{client.split(" ").filter(Boolean).slice(0, 2).map((word) => word[0]).join("")}</span><p>{client}</p></div></Reveal>)}</div></div></div></section> }
+function Our Clients() { return <section id="Our Clients" className="section Our Clients"><div className="container"><SectionHeading eyebrow="Trusted Across Industries" title="Building Lasting Partnerships Through Excellence.."/><div className="client-layout"><Reveal><blockquote><Quote size={36}/><p>“We believe lasting partnerships are built through integrity, technical excellence, and consistently delivering on our commitments.”</p><footer>V P CRANES <span>·</span> Built on Trust</footer></blockquote></Reveal><div className="client-grid">{clients.map((client, i) => <Reveal key={client} delay={i * .025}><div><span>{client.split(" ").filter(Boolean).slice(0, 2).map((word) => word[0]).join("")}</span><p>{client}</p></div></Reveal>)}</div></div></div></section> }
 
 function Gallery() { return <section className="gallery" aria-label="V P CRANES project gallery"><div className="gallery-intro"><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-grid">{gallery.map((image, i) => <div className={`gallery-image gallery-${i + 1}`} key={image}><Image src={`https://www.vpcranes.com/images/${image}`} alt="V P CRANES field project" fill sizes="(max-width: 700px) 50vw, 25vw"/></div>)}</div></section> }
 
@@ -93,7 +93,7 @@ export default function SiteShell() {
         <About />
         <Statistics />
         <WhyUs />
-        <Clientele />
+        <Our Clients />
         <Gallery />
         <Contact />
         <MapSection />
