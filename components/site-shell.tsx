@@ -41,7 +41,22 @@ function Gallery() { return <section className="gallery" aria-label="VP CRANES p
 
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
   return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Let’s discuss the lift" title="Bring the brief. We’ll bring the capability.">Tell us about your project, timeline and lifting requirement. Our team will respond with the next practical step.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small>Add the verified address in <code>data/site.ts</code> before launch.</span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div><div><Clock3/><span><small>Working hours</small>Monday–Saturday · 9:00 AM–6:00 PM</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Tell us about your project or equipment requirement" rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button>{sent && <p className="form-success"><Check size={16}/> Thank you. Your enquiry is ready for our team.</p>}</form></Reveal></div></section> }
-
+function MapSection() {
+  return (
+    <section id="map" className="map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2069840905733!2d81.39109577535179!3d21.223639281056474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a29225b3db9823d%3A0x32d2ddff7431d70f!2sV.P.%20CRANES!5e0!3m2!1sen!2sin!4v1785218028414!5m2!1sen!2sin"
+        width="100%"
+        height="450"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+        title="VP CRANES Location"
+      />
+    </section>
+  );
+}
 function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Dependable heavy lifting, crane rental and equipment solutions for the work that matters.</p></div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div><div><h3>Get in touch</h3><a href={contact.phoneHref}>{contact.phone}</a>{contact.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}<a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a></div><div><h3>Visit us</h3><p>{contact.address}</p><a className="footer-map" href="#map">View map <ArrowRight size={14}/></a></div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} VP CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer><section id="map" className="map"><div><MapPin size={24}/><p>Google Maps location placeholder</p><span>Replace the embed URL in <code>components/site-shell.tsx</code> when your pin is ready.</span></div></section>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
 export default function SiteShell() { return <><Navbar/><main><Hero/><Statistics/><ServiceGrid/><About/><WhyUs/><Clientele/><Gallery/><Contact/></main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(companySchema) }}/></>; }
