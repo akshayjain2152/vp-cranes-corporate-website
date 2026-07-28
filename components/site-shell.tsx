@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowUp, Check, ChevronRight, Clock3, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { clients, companySchema, contact, gallery, navigation, services, stats, strengths } from "@/data/site";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 
@@ -13,10 +14,18 @@ function Navbar() {
   const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false); const [active, setActive] = useState("#home");
   useEffect(() => { const update = () => { setScrolled(window.scrollY > 30); const sections = navigation.map(([, href]) => document.querySelector(href)); const current = sections.find((el) => el && el.getBoundingClientRect().top < window.innerHeight * .42 && el.getBoundingClientRect().bottom > window.innerHeight * .42); if (current) setActive(`#${current.id}`); }; update(); window.addEventListener("scroll", update, { passive: true }); return () => window.removeEventListener("scroll", update); }, []);
   const close = () => setOpen(false);
-  return <header className={`nav-wrap ${scrolled ? "nav-scrolled" : ""}`}><nav className="nav container" aria-label="Main navigation"><Logo light={!scrolled} /><div className="desktop-nav">{navigation.map(([label, href]) => <a key={href} href={href} className={active === href ? "active" : ""}>{label}</a>)}</div><a className="nav-phone" href={contact.phoneHref}><Phone size={15} />{contact.phone}</a><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></nav><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}><div className="container">{navigation.map(([label, href], index) => <motion.a key={href} href={href} onClick={close} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * .04 }}>{label}<ChevronRight size={17} /></motion.a>)}<a className="button" href={contact.phoneHref}>Call our team<Phone size={16}/></a></div></motion.div>}</AnimatePresence></header>;
+  return <header className={`nav-wrap ${scrolled ? "nav-scrolled" : ""}`}><nav className="nav container" aria-label="Main navigation"><Logo light={!scrolled} /><div className="desktop-nav">{navigation.map(([label, href]) => <a key={href} href={href} className={active === href ? "active" : ""}>{label}</a>)}</div><a
+  className="nav-phone"
+  href={contact.whatsapp}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp"
+>
+  <FaWhatsapp size={24} />
+</a><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></nav><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}><div className="container">{navigation.map(([label, href], index) => <motion.a key={href} href={href} onClick={close} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * .04 }}>{label}<ChevronRight size={17} /></motion.a>)}<a className="button" href={contact.phoneHref}>Call our team<Phone size={16}/></a></div></motion.div>}</AnimatePresence></header>;
 }
 
-function Hero() { return <section id="home" className="hero"><div className="hero-media" /><div className="hero-grid"/><div className="container hero-content"><Reveal><p className="eyebrow eyebrow-light">Bhilai, Chhattisgarh · Since 2012</p><h1>We move the<br/><em>weight of progress.</em></h1><p className="hero-copy">Heavy lifting and crane solutions for the infrastructure, industrial and construction projects that keep India moving.</p><div className="hero-actions"><Button href="#services">Explore our capabilities</Button><a className="text-link light" href="#contact">Talk to a specialist <ArrowRight size={17}/></a></div></Reveal><div className="hero-stamp"><span>VP</span><p>Engineered<br/>to lift.</p></div></div><a href="#about" className="scroll-cue"><span/>Scroll to discover</a></section> }
+function Hero() { return <section id="home" className="hero"><div className="hero-media" /><div className="hero-grid"/><div className="container hero-content"><Reveal><h1>Decades of lifting<br/><em>the impossible.</em></h1><p className="hero-copy">Trusted heavy-lifting and crane rental solutions for construction and infrastructure projects.</p><div className="hero-actions"><Button href="#services">Explore our capabilities</Button></div></Reveal></div></section> }
 
 function ServiceGrid() { return <section id="services" className="section services"><div className="container"><SectionHeading eyebrow="What we do" title="One capable partner for every stage of the lift.">From fleet access to asset acquisition, our services are built around the realities of high-stakes work.</SectionHeading><div className="service-grid">{services.map(({ title, eyebrow, description, Icon, image }, i) => <Reveal key={title} delay={i * .08}><article className="service-card"><div className="service-image"><Image src={image} alt="VP CRANES equipment at work" fill sizes="(max-width: 850px) 100vw, 33vw" /><span>{eyebrow}</span></div><div className="service-body"><div className="icon-box"><Icon size={21}/></div><h3>{title}</h3><p>{description}</p><a href="#contact" aria-label={`Discuss ${title}`}><ArrowRight size={20}/></a></div></article></Reveal>)}</div></div></section> }
 
