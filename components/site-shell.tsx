@@ -35,13 +35,4 @@ function Contact() { const [sent, setSent] = useState(false); const submit = (ev
 
 function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Dependable heavy lifting, crane rental and equipment solutions for the work that matters.</p></div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div><div><h3>Get in touch</h3><a href={contact.phoneHref}>{contact.phone}</a>{contact.email && <a href={`mailto:${contact.email}`}>{contact.email}</a>}<a href={contact.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a></div><div><h3>Visit us</h3><p>{contact.address}</p><a className="footer-map" href="#map">View map <ArrowRight size={14}/></a></div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} VP CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer><section id="map" className="map"><div><MapPin size={24}/><p>Google Maps location placeholder</p><span>Replace the embed URL in <code>components/site-shell.tsx</code> when your pin is ready.</span></div></section>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
-export default function SiteShell() { return <><Navbar/><<main>
-  <Hero />
-  <ServiceGrid />
-  <About />
-  <Statistics />
-  <WhyUs />
-  <Clientele />
-  <Gallery />
-  <Contact />
-</main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(companySchema) }}/></>; }
+export default function SiteShell() { return <><Navbar/><main><Hero/><Statistics/><ServiceGrid/><About/><WhyUs/><Clientele/><Gallery/><Contact/></main><Footer/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(companySchema) }}/></>; }
