@@ -28,7 +28,44 @@ export const strengths = [
   { title: "Clear Accountability", text: "Clear communication, dependable execution and complete accountability from project planning to successful completion.", Icon: Handshake },
 ];
 
-export const clients = ["Phil Group, Bilaspur", "BS Sponge, Raigarh", "MSP, Raigarh", "S K Mahendra, Korba", "Sarens, New Delhi", "Surana Earth Movers Company, Kolkata", "RIPL, Raipur", "SKS Ispat and Power, Raipur", "Singhal Enterprises, Raigarh", "Basudev, Bilaspur", "PAPL, Khandagiri", "Karnikripa, Tumgaon", "McNally Bharat Engineering Company Limited", "BALCO, Korba"];
+export const clients = [
+  {
+    name: "Phil Group",
+    logo: "/images/phil-group-logo.png",
+  },
+  {
+    name: "BS Sponge Pvt. Ltd.",
+    logo: "/images/bs_sponge_pvt_ltd_logo.png",
+  },
+  {
+    name: "MSP",
+    logo: "/images/mspsteelofficial_logo.png",
+  },
+  {
+    name: "Sarens",
+    logo: "/images/sarens-logo.png",
+  },
+  {
+    name: "RIPL",
+    logo: "/images/ripl-logo.png",
+  },
+  {
+    name: "BALCO",
+    logo: "/images/balco-logo.png",
+  },
+  {
+    name: "McNally Bharat",
+    logo: "/images/mcnally-logo.png",
+  },
+  {
+    name: "Singhal Enterprises",
+    logo: "/images/singhal-logo.png",
+  },
+  {
+    name: "SKS",
+    logo: "/images/sks-raipur-logo.png",
+  },
+];
 
 export const gallery = ["3.jpg", "7.jpg", "10.jpg", "13.jpg", "19.jpg", "20.jpg"];
 
