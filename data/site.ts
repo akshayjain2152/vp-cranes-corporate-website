@@ -28,7 +28,12 @@ export const strengths = [
   { title: "Clear Accountability", text: "Clear communication, dependable execution and complete accountability from project planning to successful completion.", Icon: Handshake },
 ];
 
-export const clients = [
+type Client = {
+  name: string;
+  logo?: string;
+};
+
+export const clients : Client[] = [
   {
     name: "Phil Group",
     logo: "/images/phil-group-logo.png",
