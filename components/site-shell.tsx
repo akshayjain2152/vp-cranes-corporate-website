@@ -53,14 +53,12 @@ function Clientele() {
   return (
     <section id="clientele" className="section clientele">
       <div className="container">
-
         <SectionHeading
           eyebrow="Trusted Across Industries"
           title="Building Lasting Partnerships Through Excellence."
         />
 
         <div className="client-layout">
-
           <Reveal>
             <blockquote>
               <Quote size={36} />
@@ -77,35 +75,27 @@ function Clientele() {
           </Reveal>
 
           <div className="client-slider">
-
             <div className="client-track">
-
               {[...clients, ...clients].map((client, index) => (
+                <div
+                  className="client-card"
+                  key={`${client.name}-${index}`}
+                >
+                  <Image
+                    className="client-logo"
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    width={170}
+                    height={80}
+                    priority={false}
+                  />
 
-                <div className="client-card" key={client.name}>
-  <>
-  <Image
-    className="client-logo"
-    src={client.logo}
-    alt={`${client.name} logo`}
-    width={170}
-    height={80}
-  />
-  <p>{client.name}</p>
-</>
-  ) : (
-    
-  )}
-</div>
-
+                  <p>{client.name}</p>
+                </div>
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );
