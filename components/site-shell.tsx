@@ -86,11 +86,11 @@ function Clientele() {
   {client.logo ? (
     <>
       <Image
+        className="client-logo"
         src={client.logo}
         alt={`${client.name} logo`}
-        width={160}
-        height={70}
-        className="client-logo"
+        width={170}
+        height={80}
       />
       <p>{client.name}</p>
     </>
