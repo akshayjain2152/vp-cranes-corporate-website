@@ -43,7 +43,7 @@ export const clients : Client[] = [
     logo: "/images/bs_sponge_pvt_ltd_logo.png",
   },
   {
-    name: "MSP",
+    name: "MSP Steel & Power Ltd.",
     logo: "/images/mspsteelofficial_logo.png",
   },
   {
@@ -51,7 +51,7 @@ export const clients : Client[] = [
     logo: "/images/sarens-logo.png",
   },
   {
-    name: "RIPL",
+    name: "Real Ispat & Power Ltd.",
     logo: "/images/ripl-logo.png",
   },
   {
@@ -67,7 +67,7 @@ export const clients : Client[] = [
     logo: "/images/singhal-logo.png",
   },
   {
-    name: "SKS",
+    name: "SKS Ispat and Power Ltd.",
     logo: "/images/sks-raipur-logo.png",
   },
 
