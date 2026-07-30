@@ -83,21 +83,18 @@ function Clientele() {
               {[...clients, ...clients].map((client, index) => (
 
                 <div className="client-card" key={client.name}>
-  {client.logo ? (
-    <>
-      <Image
-        className="client-logo"
-        src={client.logo}
-        alt={`${client.name} logo`}
-        width={170}
-        height={80}
-      />
-      <p>{client.name}</p>
-    </>
+  <>
+  <Image
+    className="client-logo"
+    src={client.logo}
+    alt={`${client.name} logo`}
+    width={170}
+    height={80}
+  />
+  <p>{client.name}</p>
+</>
   ) : (
-    <div className="client-name-only">
-      {client.name}
-    </div>
+    
   )}
 </div>
 
