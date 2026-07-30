@@ -77,22 +77,27 @@ function Clientele() {
           <div className="client-slider">
             <div className="client-track">
               {[...clients, ...clients].map((client, index) => (
-                <div
-                  className="client-card"
-                  key={`${client.name}-${index}`}
-                >
-                  <Image
-                    className="client-logo"
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    width={170}
-                    height={80}
-                    priority={false}
-                  />
+  <div
+    className="client-card"
+    key={`${client.name}-${index}`}
+  >
+    {client.logo ? (
+      <Image
+        className="client-logo"
+        src={client.logo}
+        alt={`${client.name} logo`}
+        width={170}
+        height={80}
+      />
+    ) : (
+      <div className="client-name-only">
+        {client.name}
+      </div>
+    )}
 
-                  <p>{client.name}</p>
-                </div>
-              ))}
+    {client.logo && <p>{client.name}</p>}
+  </div>
+))}
             </div>
           </div>
         </div>
