@@ -103,9 +103,9 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     min-width:220px;
     height:165px;
 
-    background:#fff;
+    background:var(--red);
 
-    border:1px solid rgba(23,33,38,.08);
+    border:1px solid rgba(255,255,255,.18);
 
     border-radius:0;
 
@@ -143,7 +143,7 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     background:linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,.5),
+        rgba(255,255,255,.25),
         transparent
     );
 
@@ -153,8 +153,8 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     left:100%;
 }
 .client-logo{
-    width:160px;
-    height:75px;
+    width:170px;
+    height:80px;
 
     display:flex;
     align-items:center;
@@ -189,7 +189,7 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     font-weight:700;
     line-height:1.4;
 
-    color:var(--ink);
+    color:var(--gold);
 }.client-name-only{
     display:flex;
 
