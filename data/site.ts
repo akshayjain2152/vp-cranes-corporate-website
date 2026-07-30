@@ -65,6 +65,23 @@ export const clients = [
     name: "SKS",
     logo: "/images/sks-raipur-logo.png",
   },
+
+  // No logo
+  {
+    name: "Basudev",
+  },
+  {
+    name: "Pradhan Associates Pvt. Ltd.",
+  },
+  {
+    name: "Karnikripa Power Pvt. Ltd.",
+  },
+  {
+    name: "S K Mahendra",
+  },
+  {
+    name: "Surana Earth Movers",
+  }
 ];
 
 export const gallery = ["3.jpg", "7.jpg", "10.jpg", "13.jpg", "19.jpg", "20.jpg"];
