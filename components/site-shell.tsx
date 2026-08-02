@@ -284,7 +284,7 @@ function Gallery() {
 
           <div className="gallery-image image10">
             <Image
-              src="/grid2/image5.png"
+              src="/grid2/image5.jpg"
               alt="Project 10"
               fill
               sizes="100vw"
