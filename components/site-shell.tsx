@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUp, Check, ChevronRight, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import { ArrowRight, ArrowUp, Check, ChevronRight, ChevronLeft, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { clients, companySchema, contact,navigation, services, stats, strengths } from "@/data/site";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
@@ -159,6 +159,7 @@ function Gallery() {
     <section className="gallery" aria-label="V P CRANES project gallery">
 
       {/* LEFT SIDE */}
+
       <div className="gallery-intro">
         <p className="eyebrow eyebrow-light">
           Projects in Action
@@ -175,6 +176,7 @@ function Gallery() {
       </div>
 
       {/* RIGHT SIDE */}
+
       <div className="gallery-wrapper">
 
         {/* GRID 1 */}
@@ -185,23 +187,48 @@ function Gallery() {
           }`}
         >
           <div className="gallery-image image1">
-            <Image src="/grid1/image1.png" alt="Project 1" fill sizes="100vw" />
+            <Image
+              src="/grid1/image1.png"
+              alt="Project 1"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image image2">
-            <Image src="/grid1/image2.png" alt="Project 2" fill sizes="100vw" />
+            <Image
+              src="/grid1/image2.png"
+              alt="Project 2"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image image3">
-            <Image src="/grid1/image3.png" alt="Project 3" fill sizes="100vw" />
+            <Image
+              src="/grid1/image3.png"
+              alt="Project 3"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image image4">
-            <Image src="/grid1/image4.png" alt="Project 4" fill sizes="100vw" />
+            <Image
+              src="/grid1/image4.png"
+              alt="Project 4"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image image5">
-            <Image src="/grid1/image5.png" alt="Project 5" fill sizes="100vw" />
+            <Image
+              src="/grid1/image5.png"
+              alt="Project 5"
+              fill
+              sizes="100vw"
+            />
           </div>
         </div>
 
@@ -213,43 +240,64 @@ function Gallery() {
           }`}
         >
           <div className="gallery-image">
-            <Image src="/grid2/image6.png" alt="Project 6" fill sizes="100vw" />
+            <Image
+              src="/grid2/image6.png"
+              alt="Project 6"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image">
-            <Image src="/grid2/image7.png" alt="Project 7" fill sizes="100vw" />
+            <Image
+              src="/grid2/image7.png"
+              alt="Project 7"
+              fill
+              sizes="100vw"
+            />
           </div>
 
           <div className="gallery-image">
-            <Image src="/grid2/image8.jpg" alt="Project 8" fill sizes="100vw" />
+            <Image
+              src="/grid2/image8.jpg"
+              alt="Project 8"
+              fill
+              sizes="100vw"
+            />
           </div>
         </div>
 
         {/* NAVIGATION */}
 
         <div className="gallery-navigation">
-          {galleryPage === 1 ? (
+
+          {galleryPage === 2 && (
             <button
-              className="gallery-arrow"
-              onClick={() => setGalleryPage(2)}
-            >
-              →
-            </button>
-          ) : (
-            <button
-              className="gallery-arrow"
+              className="gallery-arrow prev"
               onClick={() => setGalleryPage(1)}
+              aria-label="Previous gallery"
             >
-              ←
+              <ChevronLeft />
             </button>
           )}
+
+          {galleryPage === 1 && (
+            <button
+              className="gallery-arrow next"
+              onClick={() => setGalleryPage(2)}
+              aria-label="Next gallery"
+            >
+              <ChevronRight />
+            </button>
+          )}
+
         </div>
 
       </div>
+
     </section>
   );
 }
-
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
   return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small></span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button>{sent && <p className="form-success"><Check size={16}/> Thank you. Your enquiry has been received. We will contact you shortly.</p>}</form></Reveal></div></section> }
 
