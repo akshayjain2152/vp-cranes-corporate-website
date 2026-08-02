@@ -10,15 +10,25 @@
     display:flex;
     align-items:center;
     justify-content:center;
+
     width:42px;
     height:42px;
+
     margin-left:auto;
+
     color:#25D366;
-    background-color:rgba(12,18,20,.04);
-    border:1px solid rgba(0,0,0,.08);
-    text-decoration:none;
+
+    /* Transparent navbar */
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+
     border-radius:50%;
-    transition:transform .25s ease,color .25s ease;
+    text-decoration:none;
+
+    transition:
+        background .3s ease,
+        border-color .3s ease,
+        transform .25s ease;
 }
 
 .nav-whatsapp svg{
@@ -27,9 +37,10 @@
 }
 
 .nav-whatsapp:hover{
-    transform:scale(1.12);
-    color:#1ebe5d;
-    background:rgba(12,18,20,.04);
+    transform:scale(1.1);
+}.nav-wrap.nav-scrolled .nav-whatsapp{
+    background:#172126;   /* Your --ink color */
+    border-color:#172126;
 }.menu-button{display:none;background:none;border:0;color:inherit;padding:6px}.mobile-menu{display:none}
 
 /* hero */.hero{height:max(820px,100svh);min-height:660px;background:var(--ink);color:#fff;position:relative;overflow:hidden;display:flex;align-items:center}.hero-video{
