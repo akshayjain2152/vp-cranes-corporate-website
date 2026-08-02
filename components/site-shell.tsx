@@ -152,7 +152,30 @@ function Clientele() {
   );
 }
 
-function Gallery() { return <section className="gallery" aria-label="V P CRANES project gallery"><div className="gallery-intro"><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-grid">
+function Gallery() {
+
+  const [galleryPage, setGalleryPage] = useState(1);
+
+  return  <section
+    className={`gallery ${
+        galleryPage === 2 ? "gallery-page2" : ""
+    }`}
+    aria-label="V P CRANES project gallery"
+><div
+    className={`gallery-intro ${
+        galleryPage === 2
+            ? "gallery-intro-hidden"
+            : ""
+    }`}
+><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-wrapper">
+
+    <div
+        className={`gallery-grid ${
+            galleryPage === 1
+                ? "gallery-active"
+                : ""
+        }`}
+    >
 
   <div className="gallery-image image1">
     <Image
@@ -198,7 +221,7 @@ function Gallery() { return <section className="gallery" aria-label="V P CRANES 
       sizes="100vw"
     />
   </div>
-
+  </div>
 </div></section> }
 
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
