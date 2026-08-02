@@ -153,157 +153,99 @@ function Clientele() {
 }
 
 function Gallery() {
-
   const [galleryPage, setGalleryPage] = useState(1);
 
   return (
-    <section
-      className="gallery"
-      aria-label="V P CRANES project gallery"
-    >
+    <section className="gallery" aria-label="V P CRANES project gallery">
 
-      {/* ================= TITLE ================= */}
-
+      {/* LEFT SIDE */}
       <div className="gallery-intro">
-
         <p className="eyebrow eyebrow-light">
           Projects in Action
         </p>
 
         <h2>
           Where Precision <br />
-          <em> Meets Performance.</em>
+          <em>Meets Performance.</em>
         </h2>
 
         <a href="#contact" className="text-link light">
           Discuss Your Project <ArrowRight size={17} />
         </a>
-
       </div>
 
-      {/* ================= RIGHT SIDE ================= */}
-
+      {/* RIGHT SIDE */}
       <div className="gallery-wrapper">
 
-        {/* ================= GRID 1 ================= */}
+        {/* GRID 1 */}
 
         <div
           className={`gallery-grid ${
             galleryPage === 1 ? "gallery-active" : ""
           }`}
         >
-
           <div className="gallery-image image1">
-            <Image
-              src="/grid1/image1.png"
-              alt="Project 1"
-              fill
-              sizes="100vw"
-            />
+            <Image src="/grid1/image1.png" alt="Project 1" fill sizes="100vw" />
           </div>
 
           <div className="gallery-image image2">
-            <Image
-              src="/grid1/image2.png"
-              alt="Project 2"
-              fill
-              sizes="100vw"
-            />
+            <Image src="/grid1/image2.png" alt="Project 2" fill sizes="100vw" />
           </div>
 
           <div className="gallery-image image3">
-            <Image
-              src="/grid1/image3.png"
-              alt="Project 3"
-              fill
-              sizes="100vw"
-            />
+            <Image src="/grid1/image3.png" alt="Project 3" fill sizes="100vw" />
           </div>
 
           <div className="gallery-image image4">
-            <Image
-              src="/grid1/image4.png"
-              alt="Project 4"
-              fill
-              sizes="100vw"
-            />
+            <Image src="/grid1/image4.png" alt="Project 4" fill sizes="100vw" />
           </div>
 
           <div className="gallery-image image5">
-            <Image
-              src="/grid1/image5.png"
-              alt="Project 5"
-              fill
-              sizes="100vw"
-            />
+            <Image src="/grid1/image5.png" alt="Project 5" fill sizes="100vw" />
           </div>
-
         </div>
 
-        {/* ================= GRID 2 ================= */}
+        {/* GRID 2 */}
 
         <div
           className={`gallery-grid gallery-grid-2 ${
             galleryPage === 2 ? "gallery-active" : ""
           }`}
         >
-
-
-          <div className="gallery-image image8">
-            <Image
-              src="/grid2/image6.png"
-              alt="Project 6"
-              fill
-              sizes="100vw"
-            />
+          <div className="gallery-image">
+            <Image src="/grid2/image6.png" alt="Project 6" fill sizes="100vw" />
           </div>
 
-          <div className="gallery-image image9">
-            <Image
-              src="/grid2/image7.png"
-              alt="Project 7"
-              fill
-              sizes="100vw"
-            />
+          <div className="gallery-image">
+            <Image src="/grid2/image7.png" alt="Project 7" fill sizes="100vw" />
           </div>
 
-          <div className="gallery-image image10">
-            <Image
-              src="/grid2/image8.jpg"
-              alt="Project 8"
-              fill
-              sizes="100vw"
-            />
+          <div className="gallery-image">
+            <Image src="/grid2/image8.jpg" alt="Project 8" fill sizes="100vw" />
           </div>
-
         </div>
 
-        {/* ================= NAVIGATION ================= */}
+        {/* NAVIGATION */}
 
         <div className="gallery-navigation">
-
-          {galleryPage === 2 && (
+          {galleryPage === 1 ? (
             <button
-              className="gallery-arrow prev"
+              className="gallery-arrow"
+              onClick={() => setGalleryPage(2)}
+            >
+              →
+            </button>
+          ) : (
+            <button
+              className="gallery-arrow"
               onClick={() => setGalleryPage(1)}
             >
               ←
             </button>
           )}
-
-          {galleryPage === 1 && (
-            <button
-              className="gallery-arrow next"
-              onClick={() => setGalleryPage(2)}
-            >
-              →
-            </button>
-          )}
-
         </div>
 
       </div>
-
     </section>
   );
 }
