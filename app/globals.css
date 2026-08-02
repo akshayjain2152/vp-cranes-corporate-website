@@ -378,21 +378,24 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     justify-items:center;
 }
 
+
+.gallery-grid-2{
+    display:grid;
+    grid-template-columns:repeat(3, auto);
+    justify-content:center;
+    gap:24px;
+}
+
 .gallery-grid-2 .gallery-image{
-
-    width:100%;
-
-    height:560px;
+    width:260px;      /* Same width for all */
+    height:560px;     /* Same height for all */
 
     position:relative;
-
     overflow:hidden;
 }
 
 .gallery-grid-2 .gallery-image img{
-
     object-fit:contain;
-
     object-position:center;
 }
 
@@ -423,23 +426,6 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
     transform:scale(1.04);
 }
-
-
-/* Grid 2 images */
-
-.gallery-grid-2 .gallery-image img{
-    object-fit:contain;
-    object-position:center;
-}
-
-.image6 img{
-    transform:scale(1.25);
-}
-
-.image6:hover img{
-    transform:scale(1.22);
-}
-
 
 /* ===========================
    GRID 1 AREAS
