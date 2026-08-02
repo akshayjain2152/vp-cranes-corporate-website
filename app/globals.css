@@ -366,20 +366,35 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
 .gallery-grid-2{
 
-    grid-template-columns:
-        1fr
-        1fr
-        .9fr;
+    display:grid;
 
-    grid-template-rows:
-        320px
-        320px;
+    grid-template-columns:repeat(3,1fr);
 
-    grid-template-areas:
-        "image6 image8 image9"
-        "image7 image8 image10";
+    gap:18px;
 
-    gap:8px;
+    align-items:center;
+
+    justify-items:center;
+
+}
+
+.gallery-grid-2 .gallery-image{
+
+    width:100%;
+
+    height:560px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.gallery-grid-2 .gallery-image img{
+
+    object-fit:contain;
+
+    object-position:center;
 
 }
 
@@ -441,18 +456,6 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .image5 img{
     object-position:center top;
 }
-
-
-/* ===========================
-   GRID 2 IMAGES
-=========================== */
-
-.image6{grid-area:image6;}
-.image7{grid-area:image7;}
-.image8{grid-area:image8;}
-.image9{grid-area:image9;}
-.image10{grid-area:image10;}
-
 
 /* Grid 2 shows complete images */
 
