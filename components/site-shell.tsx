@@ -156,9 +156,11 @@ function Gallery() {
   const [galleryPage, setGalleryPage] = useState(1);
 
   return (
-    <section className="gallery" aria-label="V P CRANES project gallery">
-
-      {/* LEFT SIDE */}
+    <section
+      className="gallery"
+      aria-label="V P CRANES project gallery"
+    >
+      {/* ================= LEFT SIDE ================= */}
 
       <div className="gallery-intro">
         <p className="eyebrow eyebrow-light">
@@ -175,11 +177,11 @@ function Gallery() {
         </a>
       </div>
 
-      {/* RIGHT SIDE */}
+      {/* ================= RIGHT SIDE ================= */}
 
       <div className="gallery-wrapper">
 
-        {/* GRID 1 */}
+        {/* ================= GRID 1 ================= */}
 
         <div
           className={`gallery-grid ${
@@ -232,7 +234,7 @@ function Gallery() {
           </div>
         </div>
 
-        {/* GRID 2 */}
+        {/* ================= GRID 2 ================= */}
 
         <div
           className={`gallery-grid gallery-grid-2 ${
@@ -267,31 +269,31 @@ function Gallery() {
           </div>
         </div>
 
-        {/* NAVIGATION */}
+      </div>
 
-        <div className="gallery-navigation">
+      {/* ================= NAVIGATION ================= */}
 
-          {galleryPage === 2 && (
-            <button
-              className="gallery-arrow prev"
-              onClick={() => setGalleryPage(1)}
-              aria-label="Previous gallery"
-            >
-              <ChevronLeft />
-            </button>
-          )}
+      <div className="gallery-navigation">
 
-          {galleryPage === 1 && (
-            <button
-              className="gallery-arrow next"
-              onClick={() => setGalleryPage(2)}
-              aria-label="Next gallery"
-            >
-              <ChevronRight />
-            </button>
-          )}
+        {galleryPage === 2 && (
+          <button
+            className="gallery-arrow prev"
+            onClick={() => setGalleryPage(1)}
+            aria-label="Previous gallery"
+          >
+            <ChevronLeft />
+          </button>
+        )}
 
-        </div>
+        {galleryPage === 1 && (
+          <button
+            className="gallery-arrow next"
+            onClick={() => setGalleryPage(2)}
+            aria-label="Next gallery"
+          >
+            <ChevronRight />
+          </button>
+        )}
 
       </div>
 
