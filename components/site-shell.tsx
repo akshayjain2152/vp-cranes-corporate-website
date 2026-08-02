@@ -158,15 +158,14 @@ function Gallery() {
 
   return (
     <section
-      className={`gallery ${galleryPage === 2 ? "gallery-page2" : ""}`}
+      className="gallery"
       aria-label="V P CRANES project gallery"
     >
 
-      <div
-        className={`gallery-intro ${
-          galleryPage === 2 ? "gallery-intro-hidden" : ""
-        }`}
-      >
+      {/* ================= TITLE ================= */}
+
+      <div className="gallery-intro">
+
         <p className="eyebrow eyebrow-light">
           Projects in Action
         </p>
@@ -179,7 +178,10 @@ function Gallery() {
         <a href="#contact" className="text-link light">
           Discuss Your Project <ArrowRight size={17} />
         </a>
+
       </div>
+
+      {/* ================= RIGHT SIDE ================= */}
 
       <div className="gallery-wrapper">
 
