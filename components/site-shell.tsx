@@ -156,73 +156,172 @@ function Gallery() {
 
   const [galleryPage, setGalleryPage] = useState(1);
 
-  return  <section
-    className={`gallery ${
-        galleryPage === 2 ? "gallery-page2" : ""
-    }`}
-    aria-label="V P CRANES project gallery"
-><div
-    className={`gallery-intro ${
-        galleryPage === 2
-            ? "gallery-intro-hidden"
-            : ""
-    }`}
-><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-wrapper">
-
-    <div
-        className={`gallery-grid ${
-            galleryPage === 1
-                ? "gallery-active"
-                : ""
-        }`}
+  return (
+    <section
+      className={`gallery ${galleryPage === 2 ? "gallery-page2" : ""}`}
+      aria-label="V P CRANES project gallery"
     >
 
-  <div className="gallery-image image1">
-    <Image
-      src="/grid1/image1.png"
-      alt="Project 1"
-      fill
-      sizes="100vw"
-    />
-  </div>
+      <div
+        className={`gallery-intro ${
+          galleryPage === 2 ? "gallery-intro-hidden" : ""
+        }`}
+      >
+        <p className="eyebrow eyebrow-light">
+          Projects in Action
+        </p>
 
-  <div className="gallery-image image2">
-    <Image
-      src="/grid1/image2.png"
-      alt="Project 2"
-      fill
-      sizes="100vw"
-    />
-  </div>
+        <h2>
+          Where Precision <br />
+          <em> Meets Performance.</em>
+        </h2>
 
-  <div className="gallery-image image3">
-    <Image
-      src="/grid1/image3.png"
-      alt="Project 3"
-      fill
-      sizes="100vw"
-    />
-  </div>
+        <a href="#contact" className="text-link light">
+          Discuss Your Project <ArrowRight size={17} />
+        </a>
+      </div>
 
-  <div className="gallery-image image4">
-    <Image
-      src="/grid1/image4.png"
-      alt="Project 4"
-      fill
-      sizes="100vw"
-    />
-  </div>
+      <div className="gallery-wrapper">
 
-  <div className="gallery-image image5">
-    <Image
-      src="/grid1/image5.png"
-      alt="Project 5"
-      fill
-      sizes="100vw"
-    />
-  </div>
-  </div>
-</div></section> }
+        {/* ================= GRID 1 ================= */}
+
+        <div
+          className={`gallery-grid ${
+            galleryPage === 1 ? "gallery-active" : ""
+          }`}
+        >
+
+          <div className="gallery-image image1">
+            <Image
+              src="/grid1/image1.png"
+              alt="Project 1"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image2">
+            <Image
+              src="/grid1/image2.png"
+              alt="Project 2"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image3">
+            <Image
+              src="/grid1/image3.png"
+              alt="Project 3"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image4">
+            <Image
+              src="/grid1/image4.png"
+              alt="Project 4"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image5">
+            <Image
+              src="/grid1/image5.png"
+              alt="Project 5"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+        </div>
+
+        {/* ================= GRID 2 ================= */}
+
+        <div
+          className={`gallery-grid gallery-grid-2 ${
+            galleryPage === 2 ? "gallery-active" : ""
+          }`}
+        >
+
+          <div className="gallery-image image6">
+            <Image
+              src="/grid2/image1.png"
+              alt="Project 6"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image7">
+            <Image
+              src="/grid2/image2.png"
+              alt="Project 7"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image8">
+            <Image
+              src="/grid2/image3.png"
+              alt="Project 8"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image9">
+            <Image
+              src="/grid2/image4.png"
+              alt="Project 9"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image10">
+            <Image
+              src="/grid2/image5.png"
+              alt="Project 10"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+        </div>
+
+        {/* ================= NAVIGATION ================= */}
+
+        <div className="gallery-navigation">
+
+          {galleryPage === 2 && (
+            <button
+              className="gallery-arrow prev"
+              onClick={() => setGalleryPage(1)}
+            >
+              ←
+            </button>
+          )}
+
+          {galleryPage === 1 && (
+            <button
+              className="gallery-arrow next"
+              onClick={() => setGalleryPage(2)}
+            >
+              →
+            </button>
+          )}
+
+        </div>
+
+      </div>
+
+    </section>
+  );
+}
 
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
   return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small></span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button>{sent && <p className="form-success"><Check size={16}/> Thank you. Your enquiry has been received. We will contact you shortly.</p>}</form></Reveal></div></section> }
