@@ -154,50 +154,51 @@ function Clientele() {
 
 function Gallery() { return <section className="gallery" aria-label="V P CRANES project gallery"><div className="gallery-intro"><p className="eyebrow eyebrow-light">Projects in Action</p><h2>Where Precision <br/><em> Meets Performance.</em></h2><a href="#contact" className="text-link light">Discuss Your Project <ArrowRight size={17}/></a></div><div className="gallery-grid">
 
-    <div className="gallery-image image1">
-        <Image
-            src="/grid1/image1.png"
-            alt="Project 1"
-            fill
-            sizes="100vw"
-        />
-    </div>
+  <div className="gallery-image image1">
+    <Image
+      src="/grid1/image1.png"
+      alt="Project 1"
+      fill
+      sizes="100vw"
+    />
+  </div>
 
-    <div className="gallery-image image2">
-        <Image
-            src="/grid1/image2.png"
-            alt="Project 2"
-            fill
-            sizes="100vw"
-        />
-    </div>
+  <div className="gallery-image image2">
+    <Image
+      src="/grid1/image2.png"
+      alt="Project 2"
+      fill
+      sizes="100vw"
+    />
+  </div>
 
-    <div className="gallery-image image3">
-        <Image
-            src="/grid1/image3.png"
-            alt="Project 3"
-            fill
-            sizes="100vw"
-        />
-    </div>
+  <div className="gallery-image image3">
+    <Image
+      src="/grid1/image3.png"
+      alt="Project 3"
+      fill
+      sizes="100vw"
+    />
+  </div>
 
-    <div className="gallery-image image4">
-        <Image
-            src="/grid1/image4.png"
-            alt="Project 4"
-            fill
-            sizes="100vw"
-        />
-    </div>
+  <div className="gallery-image image4">
+    <Image
+      src="/grid1/image4.png"
+      alt="Project 4"
+      fill
+      sizes="100vw"
+    />
+  </div>
 
-    <div className="gallery-image image5">
-        <Image
-            src="/grid1/image5.png"
-            alt="Project 5"
-            fill
-            sizes="100vw"
-        />
-    </div>
+  <div className="gallery-image image5">
+    <Image
+      src="/grid1/image5.png"
+      alt="Project 5"
+      fill
+      sizes="100vw"
+    />
+  </div>
+
 </div></section> }
 
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
