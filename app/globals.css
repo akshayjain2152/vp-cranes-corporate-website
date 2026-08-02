@@ -283,7 +283,6 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     );
 }
 
-/* gallery / contact */
 /* ===========================
    GALLERY
 =========================== */
@@ -297,24 +296,12 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     grid-template-columns:34% 66%;
 
     position:relative;
-
-    transition:grid-template-columns .45s ease;
-}
-
-.gallery-page2{
-    grid-template-columns:0% 100%;
 }
 
 .gallery-intro{
     padding:clamp(70px,10vw,140px) 50px max(50px,9vw);
-
     position:relative;
     z-index:2;
-
-    transition:
-        opacity .45s ease,
-        width .45s ease,
-        padding .45s ease;
 }
 
 .gallery-intro h2{
@@ -322,13 +309,6 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     margin-bottom:29px;
 }
 
-.gallery-intro-hidden{
-    opacity:0;
-    width:0;
-    padding:0;
-    overflow:hidden;
-    pointer-events:none;
-}
 
 /* ===========================
    WRAPPER
@@ -336,16 +316,13 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
 .gallery-wrapper{
 
-    position:relative;
-
     width:100%;
     height:100%;
 
-    padding:18px;
-
-    overflow:hidden;
+    padding:18px 18px 0 0;
 
 }
+
 
 /* ===========================
    GRID VISIBILITY
@@ -358,6 +335,7 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .gallery-grid.gallery-active{
     display:grid;
 }
+
 
 /* ===========================
    GRID 1
@@ -381,18 +359,17 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
 }
 
+
 /* ===========================
    GRID 2
 =========================== */
 
 .gallery-grid-2{
 
-    width:100%;
-
     grid-template-columns:
         1fr
         1fr
-        .85fr;
+        .9fr;
 
     grid-template-rows:
         320px
@@ -402,9 +379,10 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
         "image6 image8 image9"
         "image7 image8 image10";
 
-    gap:18px;
+    gap:8px;
 
 }
+
 
 /* ===========================
    IMAGE BOX
@@ -413,19 +391,18 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .gallery-image{
 
     position:relative;
-
     overflow:hidden;
-
     border-radius:0;
-
-    background:#11181d;
 
 }
 
 .gallery-image img{
-    object-fit:contain;
+
+    object-fit:cover;
     object-position:center;
+
     transition:transform .45s ease;
+
 }
 
 .gallery-image:hover img{
@@ -434,8 +411,9 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
 }
 
+
 /* ===========================
-   GRID 1 AREAS
+   GRID 1 IMAGES
 =========================== */
 
 .image1{grid-area:image1;}
@@ -444,14 +422,29 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .image4{grid-area:image4;}
 .image5{grid-area:image5;}
 
-.image1 img{object-position:center;}
-.image2 img{object-position:center top;}
-.image3 img{object-position:center;}
-.image4 img{object-position:center;}
-.image5 img{object-position:center top;}
+.image1 img{
+    object-position:center;
+}
+
+.image2 img{
+    object-position:center top;
+}
+
+.image3 img{
+    object-position:center;
+}
+
+.image4 img{
+    object-position:center;
+}
+
+.image5 img{
+    object-position:center top;
+}
+
 
 /* ===========================
-   GRID 2 AREAS
+   GRID 2 IMAGES
 =========================== */
 
 .image6{grid-area:image6;}
@@ -460,8 +453,42 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .image9{grid-area:image9;}
 .image10{grid-area:image10;}
 
+
+/* Grid 2 shows complete images */
+
+.gallery-grid-2 img{
+
+    object-fit:contain;
+    object-position:center;
+
+}
+
+
+/* Image ratios */
+
+.image6{
+    aspect-ratio:3/4;
+}
+
+.image7{
+    aspect-ratio:3/4;
+}
+
+.image8{
+    aspect-ratio:3/4;
+}
+
+.image9{
+    aspect-ratio:4/3;
+}
+
+.image10{
+    aspect-ratio:4/3;
+}
+
+
 /* ===========================
-   ARROWS
+   NAVIGATION
 =========================== */
 
 .gallery-navigation{
@@ -469,9 +496,10 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     display:flex;
     justify-content:center;
     align-items:center;
+
     gap:18px;
 
-    margin-top:30px;
+    margin-top:28px;
 
     width:100%;
 
@@ -492,11 +520,16 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
     color:#fff;
 
-    font-size:24px;
-
     cursor:pointer;
 
     transition:.3s ease;
+
+}
+
+.gallery-arrow svg{
+
+    width:24px;
+    height:24px;
 
 }
 
