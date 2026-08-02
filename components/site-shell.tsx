@@ -174,7 +174,7 @@ function Gallery() { return <section className="gallery" aria-label="V P CRANES 
 
     <div className="gallery-image image3">
         <Image
-            src="/grid1/image3.jpg"
+            src="/grid1/image3.png"
             alt="Project 3"
             fill
             sizes="100vw"
