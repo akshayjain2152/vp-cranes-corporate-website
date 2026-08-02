@@ -248,28 +248,11 @@ function Gallery() {
           }`}
         >
 
-          <div className="gallery-image image6">
-            <Image
-              src="/grid2/image1.png"
-              alt="Project 6"
-              fill
-              sizes="100vw"
-            />
-          </div>
-
-          <div className="gallery-image image7">
-            <Image
-              src="/grid2/image2.png"
-              alt="Project 7"
-              fill
-              sizes="100vw"
-            />
-          </div>
 
           <div className="gallery-image image8">
             <Image
-              src="/grid2/image3.png"
-              alt="Project 8"
+              src="/grid2/image6.png"
+              alt="Project 6"
               fill
               sizes="100vw"
             />
@@ -277,8 +260,8 @@ function Gallery() {
 
           <div className="gallery-image image9">
             <Image
-              src="/grid2/image4.png"
-              alt="Project 9"
+              src="/grid2/image7.png"
+              alt="Project 7"
               fill
               sizes="100vw"
             />
@@ -286,8 +269,8 @@ function Gallery() {
 
           <div className="gallery-image image10">
             <Image
-              src="/grid2/image5.jpg"
-              alt="Project 10"
+              src="/grid2/image8.jpg"
+              alt="Project 8"
               fill
               sizes="100vw"
             />
