@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowUp, Check, ChevronRight, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { clients, companySchema, contact, gallery, navigation, services, stats, strengths } from "@/data/site";
+import { clients, companySchema, contact,navigation, services, stats, strengths } from "@/data/site";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
 
 function Logo({ light = false }: { light?: boolean }) { return <a href="#home" className="brand" aria-label="V P CRANES home"><Image src="/images/logo.png" alt="V P CRANES" width={46} height={46} priority /><span className={light ? "brand-light" : ""}>V P <b>CRANES</b><small>HEAVY LIFTING SOLUTIONS</small></span></a>; }
