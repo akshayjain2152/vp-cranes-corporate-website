@@ -283,8 +283,87 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     );
 }
 
-/* gallery / contact */.gallery{min-height:610px;background:var(--ink);color:#fff;display:grid;grid-template-columns:34% 66%;position:relative}.gallery-intro{padding:clamp(70px,10vw,140px) 50px max(50px,9vw);position:relative;z-index:1}.gallery-intro h2{font-size:clamp(2.8rem,4.5vw,4.6rem);margin-bottom:29px}.gallery-grid{
+/* gallery / contact */
+/* ===========================
+   GALLERY
+=========================== */
+
+.gallery{
+    min-height:610px;
+    background:var(--ink);
+    color:#fff;
+
     display:grid;
+    grid-template-columns:34% 66%;
+
+    position:relative;
+
+    transition:grid-template-columns .45s ease;
+}
+
+.gallery-page2{
+    grid-template-columns:0% 100%;
+}
+
+.gallery-intro{
+    padding:clamp(70px,10vw,140px) 50px max(50px,9vw);
+
+    position:relative;
+    z-index:2;
+
+    transition:
+        opacity .45s ease,
+        width .45s ease,
+        padding .45s ease;
+}
+
+.gallery-intro h2{
+    font-size:clamp(2.8rem,4.5vw,4.6rem);
+    margin-bottom:29px;
+}
+
+.gallery-intro-hidden{
+    opacity:0;
+    width:0;
+    padding:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+/* ===========================
+   WRAPPER
+=========================== */
+
+.gallery-wrapper{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    padding:18px;
+
+    overflow:hidden;
+
+}
+
+/* ===========================
+   GRID VISIBILITY
+=========================== */
+
+.gallery-grid{
+    display:none;
+}
+
+.gallery-grid.gallery-active{
+    display:grid;
+}
+
+/* ===========================
+   GRID 1
+=========================== */
+
+.gallery-grid:not(.gallery-grid-2){
 
     grid-template-columns:2fr 1fr;
 
@@ -300,87 +379,129 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
     gap:18px;
 
-    padding:18px 18px 18px 0;
-}.gallery-image{
+}
+
+/* ===========================
+   GRID 2
+=========================== */
+
+.gallery-grid-2{
+
+    width:100%;
+
+    grid-template-columns:
+        1fr
+        1fr
+        .85fr;
+
+    grid-template-rows:
+        320px
+        320px;
+
+    grid-template-areas:
+        "image6 image8 image9"
+        "image7 image8 image10";
+
+    gap:18px;
+
+}
+
+/* ===========================
+   IMAGE BOX
+=========================== */
+
+.gallery-image{
 
     position:relative;
 
     overflow:hidden;
 
+    border-radius:0;
 
-}.gallery-image img{
+    background:#11181d;
+
+}
+
+.gallery-image img{
+
     object-fit:cover;
+
     object-position:center;
+
     transition:transform .45s ease;
+
 }
 
 .gallery-image:hover img{
+
     transform:scale(1.04);
-}.gallery-image{
-    position:relative;
-    overflow:hidden;
-    border-radius:0px;
-    background:#11181d;
+
 }
 
-.image1{
-    grid-area:image1;
+/* ===========================
+   GRID 1 AREAS
+=========================== */
+
+.image1{grid-area:image1;}
+.image2{grid-area:image2;}
+.image3{grid-area:image3;}
+.image4{grid-area:image4;}
+.image5{grid-area:image5;}
+
+.image1 img{object-position:center;}
+.image2 img{object-position:center top;}
+.image3 img{object-position:center;}
+.image4 img{object-position:center;}
+.image5 img{object-position:center top;}
+
+/* ===========================
+   GRID 2 AREAS
+=========================== */
+
+.image6{grid-area:image6;}
+.image7{grid-area:image7;}
+.image8{grid-area:image8;}
+.image9{grid-area:image9;}
+.image10{grid-area:image10;}
+
+/* ===========================
+   ARROWS
+=========================== */
+
+.gallery-navigation{
+
+    position:absolute;
+
+    right:18px;
+    bottom:18px;
+
+    z-index:50;
+
 }
 
-.image2{
-    grid-area:image2;
+.gallery-arrow{
+
+    width:56px;
+    height:56px;
+
+    border:none;
+
+    background:var(--red);
+
+    color:#fff;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
 }
 
-.image3{
-    grid-area:image3;
-}
+.gallery-arrow:hover{
 
-.image4{
-    grid-area:image4;
-}
+    background:var(--red-bright);
 
-.image5{
-    grid-area:image5;
-}
-.image1 img{
-    object-position:center;
-}
-
-.image2 img{
-    object-position:center top;
-}
-
-.image3 img{
-    object-position:center;
-}
-
-.image4 img{
-    object-position:center;
-}
-
-.image5 img{
-    object-position:center top;
-}
-.gallery-wrapper{
-    position:relative;
-    width:100%;
-    overflow:hidden;
-}
-
-.gallery-active{
-    display:grid;
-}
-
-.gallery-page2 .gallery-intro{
-    opacity:0;
-    width:0;
-    overflow:hidden;
-    pointer-events:none;
-    transition:.45s ease;
-}
-
-.gallery-intro{
-    transition:.45s ease;
 }
 .contact{background:var(--paper)}.contact-grid{display:grid;grid-template-columns:1fr .88fr;gap:clamp(46px,9vw,130px)}.contact-details{margin-top:38px;border-top:1px solid var(--line)}.contact-details>a,.contact-details>div{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}.contact-details svg{color:var(--red);width:18px}.contact-details small{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.11em;font-weight:800;color:var(--ink);margin-bottom:5px}.form-card{background:var(--ink);padding:40px;color:#fff}.form-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:20px;margin-bottom:26px;font-family:var(--font-playfair),Georgia,serif;font-size:25px}.form-header i{height:9px;width:9px;border-radius:99px;background:#e8c597}.form-card label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:rgba(255,255,255,.70);margin:17px 0}.form-card input,.form-card textarea{width:100%;display:block;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.27);border-radius:0;color:#fff;padding:10px 0;outline:none;transition:border-color .2s}.form-card input:focus,.form-card textarea:focus{border-color:#e8c597}.form-card input::placeholder,.form-card textarea::placeholder{color:rgba(255,255,255,.40);font-size:14px;text-transform:none;letter-spacing:0}.form-card textarea{resize:vertical}.form-card .button{width:100%;margin-top:11px}.form-success{font-size:15px;color:#e8c597;display:flex;align-items:center;gap:7px;margin:18px 0 0}
 
