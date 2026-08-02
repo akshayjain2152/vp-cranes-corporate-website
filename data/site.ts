@@ -16,8 +16,8 @@ export const navigation = [
 
 type Service = { title: string; eyebrow: string; description: string; Icon: LucideIcon; image: string };
 export const services: Service[] = [
-  { title: "Crane Rental", eyebrow: "01 / Fleet access", description: "Flexible short- and long-term access to mobile, crawler and specialised lifting equipment, supported by experienced operators.", Icon: Construction, image: "public/Services/service1.png" },
-  { title: "Pre-Owned Cranes & Parts", eyebrow: "02 / Asset lifecycle", description: "Professionally inspected pre-owned cranes, refurbishment support and access to OEM and aftermarket replacement parts.", Icon: Wrench, image: "public/Services/service2.png" },
+  { title: "Crane Rental", eyebrow: "01 / Fleet access", description: "Flexible short- and long-term access to mobile, crawler and specialised lifting equipment, supported by experienced operators.", Icon: Construction, image: "/Services/service1.png" },
+  { title: "Pre-Owned Cranes & Parts", eyebrow: "02 / Asset lifecycle", description: "Professionally inspected pre-owned cranes, refurbishment support and access to OEM and aftermarket replacement parts.", Icon: Wrench, image: "/Services/service2.png" },
   { title: "New Crane Procurement", eyebrow: "03 / Smart acquisition", description: "Guidance in selecting current-generation equipment from leading manufacturers, configured around your site needs.", Icon: ShoppingCart, image: "https://www.vpcranes.com/images/14.jpg" },
 ];
 
