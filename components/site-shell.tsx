@@ -198,16 +198,6 @@ function Gallery() { return <section className="gallery" aria-label="V P CRANES 
             sizes="100vw"
         />
     </div>
-
-    <div className="gallery-image image6">
-        <Image
-            src="/grid1/image6.png"
-            alt="Project 6"
-            fill
-            sizes="100vw"
-        />
-    </div>
-
 </div></section> }
 
 function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
