@@ -300,51 +300,126 @@ function Gallery() {
     </section>
   );
 }
-function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
+function Contact() {
+  const [sent, setSent] = useState(false);
 
-  const form = event.currentTarget;
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  const name = (
-    form.elements.namedItem("name") as HTMLInputElement
-  ).value;
+    alert("Submit function is running");
 
-  const phone = (
-    form.elements.namedItem("phone") as HTMLInputElement
-  ).value;
+    window.open(
+      "https://wa.me/919039440014?text=Hello",
+      "_blank"
+    );
+  };
 
-  const message = (
-    form.elements.namedItem("message") as HTMLTextAreaElement
-  ).value;
+  return (
+    <section id="contact" className="section contact">
+      <div className="container contact-grid">
 
-  const text = `Hello V P CRANES,
+        <div>
+          <SectionHeading
+            eyebrow="Project Enquiries"
+            title="Your Project. Our Expertise."
+          >
+            Whether you're planning a new project, require crane rental,
+            or need expert lifting solutions, our team is ready to
+            understand your requirements and provide the right solution.
+          </SectionHeading>
 
-I am interested in your heavy lifting and crane solutions. Kindly find my enquiry below.
+          <Reveal className="contact-details">
 
-━━━━━━━━━━━━━━━━━━
-👤 Name
-${name}
+            <a href={contact.phoneHref}>
+              <Phone />
+              <span>
+                <small>Call us</small>
+                {contact.phone}
+              </span>
+            </a>
 
-📱 Contact Number
-${phone}
+            {contact.email ? (
+              <a href={`mailto:${contact.email}`}>
+                <Mail />
+                <span>
+                  <small>Email us</small>
+                  {contact.email}
+                </span>
+              </a>
+            ) : (
+              <div>
+                <Mail />
+                <span>
+                  <small>Email</small>
+                </span>
+              </div>
+            )}
 
-📋 Project Details
-${message}
-━━━━━━━━━━━━━━━━━━
+            <div>
+              <MapPin />
+              <span>
+                <small>Visit us</small>
+                {contact.address}
+              </span>
+            </div>
 
-I would appreciate it if your team could contact me to discuss my requirements.
+          </Reveal>
+        </div>
 
-Thank you,
-${name}`;
+        <Reveal className="form-card">
 
-  const whatsappURL =
-    `https://wa.me/919039440014?text=${encodeURIComponent(text)}`;
+          <form onSubmit={submit}>
 
-  window.open(whatsappURL, "_blank");
+            <div className="form-header">
+              <span>Project enquiry</span>
+              <i />
+            </div>
 
-  form.reset();
-};
-  return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small></span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button></form></Reveal></div></section> }
+            <label>
+              Your name
+              <input
+                required
+                name="name"
+                placeholder="Enter your full name"
+              />
+            </label>
+
+            <label>
+              Phone number
+              <input
+                required
+                type="tel"
+                name="phone"
+                placeholder="Enter your phone number"
+              />
+            </label>
+
+            <label>
+              How can we help?
+              <textarea
+                required
+                name="message"
+                placeholder="Describe your project, lifting requirements, or equipment needs..."
+                rows={4}
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="button"
+            >
+              Send enquiry
+              <Send size={16} />
+            </button>
+
+          </form>
+
+        </Reveal>
+
+      </div>
+    </section>
+  );
+}
 
 function MapSection() {
   return (
