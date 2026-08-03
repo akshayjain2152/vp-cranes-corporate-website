@@ -301,49 +301,6 @@ function Gallery() {
   );
 }
 function Contact() {
-  
-
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-
-  const formData = new FormData(form);
-
-  const name = formData.get("name") as string;
-  const phone = formData.get("phone") as string;
-  const message = formData.get("message") as string;
-
-  const text = `NEW PROJECT ENQUIRY
-
-Hello V P CRANES,
-
-I am interested in your heavy lifting and crane solutions. Kindly find my enquiry below.
-
-━━━━━━━━━━━━━━━━━━
-
-Name - ${name}
-
-Contact Number - ${phone}
-
-Project Requirements:-
-${message}
-
-━━━━━━━━━━━━━━━━━━
-
-I would appreciate it if your team could contact me to discuss my requirements.
-
-Thank you,
-${name}`;
-
-  const whatsappURL =
-    `${contact.whatsapp}?text=${encodeURIComponent(text)}`;
-
-  window.open(whatsappURL, "_blank", "noopener,noreferrer");
-
-  form.reset();
-};
-
   return (
     <section id="contact" className="section contact">
       <div className="container contact-grid">
@@ -398,7 +355,7 @@ ${name}`;
 
         <Reveal className="form-card">
 
-          <form onSubmit={submit}>
+          <form>
 
             <div className="form-header">
               <span>Project enquiry</span>
@@ -435,8 +392,15 @@ ${name}`;
             </label>
 
             <button
-              type="submit"
+              type="button"
               className="button"
+              onClick={() => {
+                alert("Button clicked");
+                window.open(
+                  "https://wa.me/919893180014?text=Hello",
+                  "_blank"
+                );
+              }}
             >
               Send enquiry
               <Send size={16} />
