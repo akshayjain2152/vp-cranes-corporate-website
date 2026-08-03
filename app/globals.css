@@ -96,7 +96,7 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 /* services */.services{background:var(--cream)}.service-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:40px;
+    gap:60px;
 
     max-width:1000px;
     margin:53px auto 0;
