@@ -1,88 +1,509 @@
-import type { LucideIcon } from "lucide-react";
-import { BadgeCheck, Blocks, CircleGauge, Construction, Handshake, HardHat, ShieldCheck, ShoppingCart, Wrench } from "lucide-react";
+"use client";
 
-export const contact = {
-  phone: "+91 98931 80014",
-  phoneHref: "tel:+919893180014",
+import Image from "next/image";
+import { FormEvent, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ArrowUp, Check, ChevronRight, ChevronLeft, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { clients, companySchema, contact,navigation, services, stats, strengths } from "@/data/site";
+import { Button, Reveal, SectionHeading } from "@/components/ui";
 
-  whatsapp: "https://wa.me/919893180014",
-  whatsappNumber: "919893180014",
+function Logo({ light = false }: { light?: boolean }) { return <a href="#home" className="brand" aria-label="V P CRANES home"><Image src="/images/logo.png" alt="V P CRANES" width={46} height={46} priority /><span className={light ? "brand-light" : ""}>V P <b>CRANES</b><small>HEAVY LIFTING SOLUTIONS</small></span></a>; }
 
-  email: "vpcranes@yahoo.com",
+function Navbar() {
+  const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false); const [active, setActive] = useState("#home");
+  useEffect(() => { const update = () => { setScrolled(window.scrollY > 30); const sections = navigation.map(([, href]) => document.querySelector(href)); const current = sections.find((el) => el && el.getBoundingClientRect().top < window.innerHeight * .42 && el.getBoundingClientRect().bottom > window.innerHeight * .42); if (current) setActive(`#${current.id}`); }; update(); window.addEventListener("scroll", update, { passive: true }); return () => window.removeEventListener("scroll", update); }, []);
+  const close = () => setOpen(false);
+  return <header className={`nav-wrap ${scrolled ? "nav-scrolled" : ""}`}><nav className="nav container" aria-label="Main navigation"><Logo light={!scrolled} /><div className="desktop-nav">{navigation.map(([label, href]) => <a key={href} href={href} className={active === href ? "active" : ""}>{label}</a>)}</div><a
+  className="nav-whatsapp"
+  href={contact.whatsapp}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="WhatsApp"
+>
+  <FaWhatsapp size={24} />
+</a><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></nav><AnimatePresence>{open && <motion.div className="mobile-menu" initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}><div className="container">{navigation.map(([label, href], index) => <motion.a key={href} href={href} onClick={close} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * .04 }}>{label}<ChevronRight size={17} /></motion.a>)}<a className="button" href={contact.phoneHref}>Call our team<Phone size={16}/></a></div></motion.div>}</AnimatePresence></header>;
+}
 
-  address:
-    "V P Cranes, Tiranga Chowk, Chowni Industrial Area, Bhilai – 490026, Chhattisgarh, India",
+function Hero() {
+  return (
+    <section id="home" className="hero">
+
+      <video
+        className="hero-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+
+        Your browser does not support the video tag.
+      </video>
+
+      <div className="hero-grid" />
+
+      <div className="container hero-content">
+        <Reveal>
+          <h1>
+            Decades of lifting
+            <br />
+            <em>the impossible.</em>
+          </h1>
+
+          <p className="hero-copy">
+            Delivering trusted heavy lifting and crane solutions for
+            infrastructure, industrial, and construction projects across India.
+          </p>
+
+          <div className="hero-actions">
+            <Button href="#services">
+              Explore our capabilities
+            </Button>
+          </div>
+        </Reveal>
+      </div>
+
+    </section>
+  );
+}
+
+function ServiceGrid() { return <section id="services" className="section services"><div className="container"><SectionHeading eyebrow="What we do" title="Complete Lifting Solutions. One Trusted Partner.">From crane rental to equipment procurement, we deliver comprehensive lifting solutions tailored to the needs of construction, infrastructure, and industrial projects.</SectionHeading><div className="service-grid">{services.map(({ title, eyebrow, description, Icon, image }, i) => <Reveal key={title} delay={i * .08}><article className="service-card"><div className="service-image"><Image src={image} alt="V P CRANES equipment at work" fill sizes="(max-width: 850px) 100vw, 33vw" /><span>{eyebrow}</span></div><div className="service-body">
+  <div className="service-header">
+    <h3>{title}</h3>
+
+    <div className="icon-box">
+      <Icon size={21} />
+    </div>
+  </div>
+
+  <p>{description}</p>
+
+  <a href="#contact" aria-label={`Discuss ${title}`}>
+    <ArrowRight size={20} />
+  </a>
+</div></article></Reveal>)}</div></div></section> }
+
+function About() { return <section id="about" className="section about"><div className="container about-grid"><Reveal className="about-photo"><Image
+    src="/About Us/About1.png"
+    alt="V P CRANES executing a heavy lifting project"
+    fill
+    sizes="(max-width: 900px) 100vw, 50vw"
+/></Reveal><div className="about-copy"><SectionHeading eyebrow="About Us" title="Where Experience Meets Precision.">Established in 2012, V P CRANES has earned a reputation as a trusted provider of heavy lifting and crane solutions across India. Backed by a modern fleet and an experienced operations team, we deliver safe, efficient, and technically precise lifting solutions tailored to the needs of infrastructure, industrial, and construction projects.</SectionHeading><Reveal><p>We proudly serve EPC contractors, infrastructure developers, and industrial clients with lifting solutions built on precision, reliability, and accountability. Every project is carefully planned and executed to meet the highest standards of safety and efficiency, ensuring dependable performance even in the most demanding lifting operations.</p><div className="values"><div><Check/> <span><b>Mission</b>To deliver safe, reliable, and efficient lifting solutions through technical excellence, operational integrity, and an unwavering commitment to customer satisfaction.</span></div><div><Check/> <span><b>Vision</b>To be India's most trusted and preferred partner for heavy lifting and crane solutions, recognised for safety, reliability, and operational excellence.</span></div></div></Reveal></div></div></section> }
+
+function Statistics() { return <section className="stat-section"><div className="container stats">{stats.map(([number, label]) => <Reveal key={label}><div><strong>{number}</strong><span>{label}</span></div></Reveal>)}</div></section> }
+
+function WhyUs() { return <section id="why-us" className="section why"><div className="container"><SectionHeading eyebrow="Why V P Cranes" title="Built on Trust. Driven by Excellence.">Every project is backed by experienced professionals, dependable equipment, and a commitment to safety, precision, and operational excellence—ensuring reliable results from planning to completion.</SectionHeading><div className="strength-grid">{strengths.map(({ title, text, Icon }, i) => <Reveal key={title} delay={i * .06}><article><Icon size={24} strokeWidth={1.4}/><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div></section> }
+
+function Clientele() {
+  return (
+    <section id="clientele" className="section clientele">
+      <div className="container">
+        <SectionHeading
+          eyebrow="Trusted Across Industries"
+          title="Building Lasting Partnerships Through Excellence."
+        />
+
+        <div className="client-layout">
+          <Reveal>
+            <blockquote>
+              <Quote size={36} />
+              <p>
+                “We believe lasting partnerships are built through integrity,
+                technical excellence, and consistently delivering on our
+                commitments.”
+              </p>
+
+              <footer>
+                V P CRANES <span>·</span> Built on Trust
+              </footer>
+            </blockquote>
+          </Reveal>
+
+          <div className="client-slider">
+            <div className="client-track">
+              {[...clients, ...clients].map((client, index) => (
+  <div
+    className="client-card"
+    key={`${client.name}-${index}`}
+  >
+    {client.logo ? (
+      <Image
+        className="client-logo"
+        src={client.logo}
+        alt={`${client.name} logo`}
+        width={170}
+        height={80}
+      />
+    ) : (
+      <div className="client-name-only">
+        {client.name}
+      </div>
+    )}
+
+    {client.logo && <p>{client.name}</p>}
+  </div>
+))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Gallery() {
+  const [galleryPage, setGalleryPage] = useState(1);
+
+  return (
+    <section
+      className="gallery"
+      aria-label="V P CRANES project gallery"
+    >
+      {/* ================= LEFT SIDE ================= */}
+
+      <div className="gallery-intro">
+        <p className="eyebrow eyebrow-light">
+          Projects in Action
+        </p>
+
+        <h2>
+          Where Precision <br />
+          <em>Meets Performance.</em>
+        </h2>
+
+        <a href="#contact" className="text-link light">
+          Discuss Your Project <ArrowRight size={17} />
+        </a>
+      </div>
+
+      {/* ================= RIGHT SIDE ================= */}
+
+      <div className="gallery-wrapper">
+
+        {/* ================= GRID 1 ================= */}
+
+        <div
+          className={`gallery-grid ${
+            galleryPage === 1 ? "gallery-active" : ""
+          }`}
+        >
+          <div className="gallery-image image1">
+            <Image
+              src="/grid1/image1.png"
+              alt="Project 1"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image2">
+            <Image
+              src="/grid1/image2.png"
+              alt="Project 2"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image3">
+            <Image
+              src="/grid1/image3.png"
+              alt="Project 3"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image4">
+            <Image
+              src="/grid1/image4.png"
+              alt="Project 4"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image image5">
+            <Image
+              src="/grid1/image5.png"
+              alt="Project 5"
+              fill
+              sizes="100vw"
+            />
+          </div>
+        </div>
+
+        {/* ================= GRID 2 ================= */}
+
+        <div
+          className={`gallery-grid gallery-grid-2 ${
+            galleryPage === 2 ? "gallery-active" : ""
+          }`}
+        >
+          <div className="gallery-image">
+            <Image
+              src="/grid2/image6.png"
+              alt="Project 6"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image">
+            <Image
+              src="/grid2/image7.png"
+              alt="Project 7"
+              fill
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="gallery-image">
+            <Image
+              src="/grid2/image8.jpg"
+              alt="Project 8"
+              fill
+              sizes="100vw"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      {/* ================= NAVIGATION ================= */}
+
+      <div className="gallery-navigation">
+
+        {galleryPage === 2 && (
+          <button
+            className="gallery-arrow prev"
+            onClick={() => setGalleryPage(1)}
+            aria-label="Previous gallery"
+          >
+            <ChevronLeft />
+          </button>
+        )}
+
+        {galleryPage === 1 && (
+          <button
+            className="gallery-arrow next"
+            onClick={() => setGalleryPage(2)}
+            aria-label="Next gallery"
+          >
+            <ChevronRight />
+          </button>
+        )}
+
+      </div>
+
+    </section>
+  );
+}
+function Contact() {
+  
+
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+
+  const formData = new FormData(form);
+
+  const name = formData.get("name") as string;
+  const phone = formData.get("phone") as string;
+  const message = formData.get("message") as string;
+
+  const text = `🏗️ *NEW PROJECT ENQUIRY*
+
+Hello V P CRANES,
+
+I am interested in your heavy lifting and crane solutions. Kindly find my enquiry below.
+
+━━━━━━━━━━━━━━━━━━
+
+👤 *Name*
+${name}
+
+📞 *Contact Number*
+${phone}
+
+📋 *Project Requirements*
+${message}
+
+━━━━━━━━━━━━━━━━━━
+
+I would appreciate it if your team could contact me to discuss my requirements.
+
+Thank you,
+${name}`;
+
+  const whatsappURL =
+    `${contact.whatsapp}?text=${encodeURIComponent(text)}`;
+
+  window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+  form.reset();
 };
 
-export const navigation = [
-  ["Home", "#home"], ["What We Do", "#services"], ["About Us", "#about"], ["Why Us", "#why-us"], ["Our Clients", "#clientele"], ["Contact", "#contact"],
-] as const;
+  return (
+    <section id="contact" className="section contact">
+      <div className="container contact-grid">
 
-type Service = { title: string; eyebrow: string; description: string; Icon: LucideIcon; image: string };
-export const services: Service[] = [
-  { title: "Crane Rental", eyebrow: "01 / Fleet access", description: "Flexible short- and long-term access to mobile, crawler and specialised lifting equipment, supported by experienced operators.", Icon: Construction, image: "/Services/service1.png" },
-  { title: "Pre-Owned Cranes & Parts", eyebrow: "02 / Asset lifecycle", description: "Professionally inspected pre-owned cranes, refurbishment support and access to OEM and aftermarket replacement parts.", Icon: Wrench, image: "/Services/service2.png" },
-];
+        <div>
+          <SectionHeading
+            eyebrow="Project Enquiries"
+            title="Your Project. Our Expertise."
+          >
+            Whether you're planning a new project, require crane rental,
+            or need expert lifting solutions, our team is ready to
+            understand your requirements and provide the right solution.
+          </SectionHeading>
 
-export const strengths = [
-  { title: "Safety-led Execution", text: "Meticulous lift planning, trained operators and disciplined site controls ensure every lift is executed safely and efficiently.", Icon: ShieldCheck },
-  { title: "Experienced Professionals", text: "A skilled operations team with extensive experience across construction, infrastructure and industrial projects.", Icon: HardHat },
-  { title: "Purpose-Built Equipment", text: "A versatile fleet of mobile, crawler and specialised cranes selected to match the load, site conditions and project requirements.", Icon: Construction },
-  { title: "Clear Accountability", text: "Clear communication, dependable execution and complete accountability from project planning to successful completion.", Icon: Handshake },
-];
+          <Reveal className="contact-details">
 
-type Client = {
-  name: string;
-  logo?: string;
-};
+            <a href={contact.phoneHref}>
+              <Phone />
+              <span>
+                <small>Call us</small>
+                {contact.phone}
+              </span>
+            </a>
 
-export const clients : Client[] = [
-  {
-    name: "Phil Group",
-    logo: "/images/phil-group-logo.png",
-  },
-  {
-    name: "BS Sponge Pvt. Ltd.",
-    logo: "/images/bs_sponge_pvt_ltd_logo.png",
-  },
-  {
-    name: "MSP Steel & Power Ltd.",
-    logo: "/images/mspsteelofficial_logo.png",
-  },
-  {
-    name: "Sarens",
-    logo: "/images/sarens-logo.png",
-  },
-  {
-    name: "Real Ispat & Power Ltd.",
-    logo: "/images/ripl-logo.png",
-  },
-  {
-    name: "BALCO",
-    logo: "/images/balco-logo.png",
-  },
-  {
-    name: "McNally Bharat",
-    logo: "/images/mcnally-logo.png",
-  },
-  {
-    name: "Singhal Enterprises",
-    logo: "/images/singhal-logo.png",
-  },
-  {
-    name: "SKS Ispat and Power Ltd.",
-    logo: "/images/sks-raipur-logo.png",
-  },
-];
+            {contact.email ? (
+              <a href={`mailto:${contact.email}`}>
+                <Mail />
+                <span>
+                  <small>Email us</small>
+                  {contact.email}
+                </span>
+              </a>
+            ) : (
+              <div>
+                <Mail />
+                <span>
+                  <small>Email</small>
+                </span>
+              </div>
+            )}
 
-export const gallery = ["3.jpg", "7.jpg", "10.jpg", "13.jpg", "19.jpg", "20.jpg"];
+            <div>
+              <MapPin />
+              <span>
+                <small>Visit us</small>
+                {contact.address}
+              </span>
+            </div>
 
-export const stats = [
-  ["2012", "Established"], ["10+", "Years of experience"], ["3", "Integrated service lines"], ["14", "Trusted Clients"],
-] as const;
+          </Reveal>
+        </div>
 
-export const companySchema = {
-  "@context": "https://schema.org", "@type": "Organization", name: "VP CRANES", url: "https://www.vpcranes.com", logo: "https://www.vpcranes.com/images/logo.png", description: "Heavy lifting, crane rental, pre-owned cranes, crane procurement, and specialised lifting solutions across India.", telephone: "+91-98931-80014", address: { "@type": "PostalAddress", streetAddress: "V P Cranes, Tiranga Chowk, Chowni Industrial Area", addressLocality: "Bhilai", postalCode: "490026", addressRegion: "Chhattisgarh", addressCountry: "IN" }, sameAs: [
-  contact.whatsapp,
-],
-};
+        <Reveal className="form-card">
+
+          <form onSubmit={submit}>
+
+            <div className="form-header">
+              <span>Project enquiry</span>
+              <i />
+            </div>
+
+            <label>
+              Your name
+              <input
+                required
+                name="name"
+                placeholder="Enter your full name"
+              />
+            </label>
+
+            <label>
+              Phone number
+              <input
+                required
+                type="tel"
+                name="phone"
+                placeholder="Enter your phone number"
+              />
+            </label>
+
+            <label>
+              How can we help?
+              <textarea
+                required
+                name="message"
+                placeholder="Describe your project, lifting requirements, or equipment needs..."
+                rows={4}
+              />
+            </label>
+
+            <button
+              type="submit"
+              className="button"
+            >
+              Send enquiry
+              <Send size={16} />
+            </button>
+
+          </form>
+
+        </Reveal>
+
+      </div>
+    </section>
+  );
+}
+
+function MapSection() {
+  return (
+    <section id="map" className="map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.2069840905733!2d81.39109577535179!3d21.223639281056474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a29225b3db9823d%3A0x32d2ddff7431d70f!2sV.P.%20CRANES!5e0!3m2!1sen!2sin!4v1785218028414!5m2!1sen!2sin"
+        width="100%"
+        height="450"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+        title="V P CRANES Location"
+      />
+    </section>
+  );
+}
+function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Delivering safe, reliable, and efficient heavy lifting solutions with precision, professionalism, and a commitment to excellence.</p></div><div>
+  <h3>Services</h3>
+
+  <a href="#services">Crane Rental</a>
+
+  <a href="#services">Pre-Owned Cranes & Parts</a>
+
+  <a href="#services">New Crane Procurement</a>
+</div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} V P CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
+
+export default function SiteShell() {
+  return (
+    <>
+      <Navbar />
+
+      <main>
+        <Hero />
+        <ServiceGrid />
+        <About />
+        <Statistics />
+        <WhyUs />
+        <Clientele />
+        <Gallery />
+        <Contact />
+        <MapSection />
+      </main>
+
+      <Footer />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(companySchema),
+        }}
+      />
+    </>
+  );
+}
