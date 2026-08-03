@@ -301,6 +301,59 @@ function Gallery() {
   );
 }
 function Contact() {
+  const handleWhatsApp = () => {
+    const form = document.querySelector(
+      "#contact form"
+    ) as HTMLFormElement;
+
+    if (!form) return;
+
+    const formData = new FormData(form);
+
+    const name = (formData.get("name") as string)?.trim();
+    const phone = (formData.get("phone") as string)?.trim();
+    const message = (formData.get("message") as string)?.trim();
+
+    if (!name || !phone || !message) {
+      alert("Please fill in all the fields.");
+      return;
+    }
+
+    const whatsappMessage = `NEW PROJECT ENQUIRY
+
+Hello V P CRANES,
+
+I am interested in your heavy lifting and crane solutions. Kindly find my enquiry below.
+
+----------------------------------------
+
+Name
+${name}
+
+Contact Number
+${phone}
+
+Project Requirements
+${message}
+
+----------------------------------------
+
+I would appreciate it if your team could contact me to discuss my requirements.
+
+Thank you,
+
+${name}`;
+
+    window.open(
+      `https://wa.me/919893180014?text=${encodeURIComponent(
+        whatsappMessage
+      )}`,
+      "_blank"
+    );
+
+    form.reset();
+  };
+
   return (
     <section id="contact" className="section contact">
       <div className="container contact-grid">
@@ -394,13 +447,7 @@ function Contact() {
             <button
               type="button"
               className="button"
-              onClick={() => {
-                alert("Button clicked");
-                window.open(
-                  "https://wa.me/919893180014?text=Hello",
-                  "_blank"
-                );
-              }}
+              onClick={handleWhatsApp}
             >
               Send enquiry
               <Send size={16} />
