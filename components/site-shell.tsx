@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowUp, Check, ChevronRight, ChevronLeft, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, ChevronLeft, Mail, MapPin, Menu, Phone, Quote, Send, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { clients, companySchema, contact,navigation, services, stats, strengths } from "@/data/site";
 import { Button, Reveal, SectionHeading } from "@/components/ui";
@@ -467,16 +467,51 @@ function MapSection() {
     </section>
   );
 }
-function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() => { const listener = () => setShowTop(window.scrollY > 600); window.addEventListener("scroll", listener); listener(); return () => window.removeEventListener("scroll", listener); }, []); return <><footer className="footer"><div className="container footer-grid"><div><Logo light/><p>Delivering safe, reliable, and efficient heavy lifting solutions with precision, professionalism, and a commitment to excellence.</p></div><div>
-  <h3>Services</h3>
+function Footer() {
+  return (
+    <footer className="footer">
 
-  <a href="#services">Crane Rental</a>
+      <div className="container footer-grid">
 
-  <a href="#services">Pre-Owned Cranes & Parts</a>
+        <div>
+          <Logo light />
+          <p>
+            Delivering safe, reliable, and efficient heavy lifting solutions
+            with precision, professionalism, and a commitment to excellence.
+          </p>
+        </div>
 
-  <a href="#services">New Crane Procurement</a>
-</div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} V P CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
+        <div>
+          <h3>Services</h3>
 
+          <a href="#services">Crane Rental</a>
+          <a href="#services">Pre-Owned Cranes & Parts</a>
+          <a href="#services">New Crane Procurement</a>
+        </div>
+
+        <div>
+          <h3>Explore</h3>
+
+          {navigation.slice(1, 5).map(([label, href]) => (
+            <a key={href} href={href}>
+              {label}
+            </a>
+          ))}
+        </div>
+
+      </div>
+
+      <div className="container footer-bottom">
+        <p>
+          © {new Date().getFullYear()} V P CRANES. All rights reserved.
+        </p>
+
+        <p>Heavy lifting, done right.</p>
+      </div>
+
+    </footer>
+  );
+}
 export default function SiteShell() {
   return (
     <>
