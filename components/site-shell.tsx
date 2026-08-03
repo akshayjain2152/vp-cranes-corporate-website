@@ -314,7 +314,7 @@ function Contact() {
   const phone = formData.get("phone") as string;
   const message = formData.get("message") as string;
 
-  const text = `🏗️ *NEW PROJECT ENQUIRY*
+  const text = `NEW PROJECT ENQUIRY
 
 Hello V P CRANES,
 
@@ -322,13 +322,11 @@ I am interested in your heavy lifting and crane solutions. Kindly find my enquir
 
 ━━━━━━━━━━━━━━━━━━
 
-👤 *Name*
-${name}
+Name - ${name}
 
-📞 *Contact Number*
-${phone}
+Contact Number - ${phone}
 
-📋 *Project Requirements*
+Project Requirements:-
 ${message}
 
 ━━━━━━━━━━━━━━━━━━
