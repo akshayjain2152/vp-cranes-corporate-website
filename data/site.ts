@@ -4,10 +4,13 @@ import { BadgeCheck, Blocks, CircleGauge, Construction, Handshake, HardHat, Shie
 export const contact = {
   phone: "+91 98931 80014",
   phoneHref: "tel:+919893180014",
-  address: "V P Cranes, Tiranga Chowk, Chowni Industrial Area, Bhilai – 490026, Chhattisgarh, India",
-  whatsapp: "https://wa.me/919893180014",
-  // The source website does not publish an email address. Add the verified address here before launch.
+  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
+  whatsappNumber: "919039440014",
+
   email: "vpcranes@yahoo.com",
+
+  address:
+    "V P Cranes, Tiranga Chowk, Chowni Industrial Area, Bhilai – 490026, Chhattisgarh, India",
 };
 
 export const navigation = [
