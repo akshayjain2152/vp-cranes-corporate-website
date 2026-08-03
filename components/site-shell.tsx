@@ -338,7 +338,7 @@ Thank you,
 ${name}`;
 
   const whatsappURL =
-    `https://wa.me/919893180014?text=${encodeURIComponent(text)}`;
+    `https://wa.me/919039440014?text=${encodeURIComponent(text)}`;
 
   window.open(whatsappURL, "_blank");
 
