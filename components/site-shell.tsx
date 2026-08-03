@@ -357,9 +357,10 @@ function Gallery() {
               <Image
                 src={mobileImages[mobileImage]}
                 alt={`Project ${mobileImage + 1}`}
-                fill
+                width={1200}
+                height={1200}
                 sizes="100vw"
-                priority
+                className="gallery-mobile-img"
               />
 
             </motion.div>
