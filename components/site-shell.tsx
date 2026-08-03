@@ -326,7 +326,7 @@ function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() 
 
   <a href="#services">Pre-Owned Cranes & Parts</a>
 
-  <a href="#services">New Crane Procurement</a>
+  
 </div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} V P CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
 export default function SiteShell() {
