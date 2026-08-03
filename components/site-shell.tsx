@@ -354,12 +354,9 @@ function Gallery() {
               }}
             >
 
-              <Image
+              <img
                 src={mobileImages[mobileImage]}
                 alt={`Project ${mobileImage + 1}`}
-                width={1200}
-                height={1200}
-                sizes="100vw"
                 className="gallery-mobile-img"
               />
 
