@@ -4,8 +4,9 @@ import { BadgeCheck, Blocks, CircleGauge, Construction, Handshake, HardHat, Shie
 export const contact = {
   phone: "+91 98931 80014",
   phoneHref: "tel:+919893180014",
-  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
-  whatsappNumber: "919039440014",
+
+  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`,
+  whatsappNumber: "919893180014",
 
   email: "vpcranes@yahoo.com",
 
