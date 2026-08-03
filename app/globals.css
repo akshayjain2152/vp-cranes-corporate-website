@@ -574,8 +574,17 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
     .gallery-mobile-image{
     position:relative;
     width:100%;
-    height:420px;
     overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:transparent;
+}
+.gallery-mobile-img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
 }
 
 .gallery-mobile-image img{
