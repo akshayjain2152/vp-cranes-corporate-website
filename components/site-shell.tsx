@@ -300,8 +300,51 @@ function Gallery() {
     </section>
   );
 }
-function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => { event.preventDefault(); setSent(true); event.currentTarget.reset(); };
-  return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small></span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button>{sent && <p className="form-success"><Check size={16}/> Thank you. Your enquiry has been received. We will contact you shortly.</p>}</form></Reveal></div></section> }
+function Contact() { const [sent, setSent] = useState(false); const submit = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+
+  const name = (
+    form.elements.namedItem("name") as HTMLInputElement
+  ).value;
+
+  const phone = (
+    form.elements.namedItem("phone") as HTMLInputElement
+  ).value;
+
+  const message = (
+    form.elements.namedItem("message") as HTMLTextAreaElement
+  ).value;
+
+  const text = `Hello V P CRANES,
+
+I am interested in your heavy lifting and crane solutions. Kindly find my enquiry below.
+
+━━━━━━━━━━━━━━━━━━
+👤 Name
+${name}
+
+📱 Contact Number
+${phone}
+
+📋 Project Details
+${message}
+━━━━━━━━━━━━━━━━━━
+
+I would appreciate it if your team could contact me to discuss my requirements.
+
+Thank you,
+${name}`;
+
+  const whatsappURL =
+    `https://wa.me/919893180014?text=${encodeURIComponent(text)}`;
+
+  window.open(whatsappURL, "_blank");
+
+  form.reset();
+};
+  return <section id="contact" className="section contact"><div className="container contact-grid"><div><SectionHeading eyebrow="Project Enquiries" title="Your Project. Our Expertise.">Whether you're planning a new project, require crane rental, or need expert lifting solutions, our team is ready to understand your requirements and provide the right solution.</SectionHeading><Reveal className="contact-details"><a href={contact.phoneHref}><Phone/><span><small>Call us</small>{contact.phone}</span></a>{contact.email ? <a href={`mailto:${contact.email}`}><Mail/><span><small>Email us</small>{contact.email}</span></a> : <div><Mail/><span><small>Email</small></span></div>}<div><MapPin/><span><small>Visit us</small>{contact.address}</span></div></Reveal></div><Reveal className="form-card"><form onSubmit={submit}><div className="form-header"><span>Project enquiry</span><i/></div><label>Your name<input required name="name" placeholder="Enter your full name" /></label><label>Phone number<input required type="tel" name="phone" placeholder="Enter your phone number" /></label><label>How can we help?<textarea required name="message" placeholder="Describe your project, lifting requirements, or equipment needs..." rows={4}/></label><button type="submit" className="button">Send enquiry <Send size={16}/></button></form></Reveal></div></section> }
 
 function MapSection() {
   return (
@@ -326,7 +369,7 @@ function Footer() { const [showTop, setShowTop] = useState(false); useEffect(() 
 
   <a href="#services">Pre-Owned Cranes & Parts</a>
 
-  
+  <a href="#services">New Crane Procurement</a>
 </div><div><h3>Explore</h3>{navigation.slice(1, 5).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><p>© {new Date().getFullYear()} V P CRANES. All rights reserved.</p><p>Heavy lifting, done right.</p></div></footer>{showTop && <button className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Back to top"><ArrowUp size={18}/></button>}</> }
 
 export default function SiteShell() {
