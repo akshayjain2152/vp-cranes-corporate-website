@@ -5,7 +5,7 @@ export const contact = {
   phone: "+91 98931 80014",
   phoneHref: "tel:+919893180014",
 
-  whatsapp: "https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}";
+  whatsapp: "https://wa.me/919893180014",
   whatsappNumber: "919893180014",
 
   email: "vpcranes@yahoo.com",
