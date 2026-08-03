@@ -96,9 +96,9 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 /* services */.services{background:var(--cream)}.service-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:20px;
+    gap:40px;
 
-    max-width:900px;
+    max-width:1000px;
     margin:53px auto 0;
 }.service-card{height:100%;background:var(--paper);border:1px solid rgba(23,33,38,.08);transition:transform .3s,box-shadow .3s}.service-card:hover{transform:translateY(-7px);box-shadow:0 20px 36px rgba(23,33,38,.09)}.service-image{height:260px;position:relative;overflow:hidden;background:var(--ink)}.service-image img{object-fit:cover;filter:none;transition:transform .55s}.service-card:hover .service-image img{transform:scale(1.07)}.service-image:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,28,30,.6),transparent)}.service-image span{position:absolute;z-index:1;bottom:16px;left:17px;color:#fff;font-size:9px;letter-spacing:.13em;text-transform:uppercase;font-weight:800}.service-body{position:relative;padding:26px 27px 31px;padding-right:90px;}.icon-box{
     position:absolute;
