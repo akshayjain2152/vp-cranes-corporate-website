@@ -162,7 +162,7 @@ function Gallery() {
     "/grid1/image3.png",
     "/grid1/image4.png",
     "/grid1/image5.png",
-    "/grid2/image6.png",
+    "/grid2/image6cropped.png",
     "/grid2/image7.png",
     "/grid2/image8.jpg",
   ];
