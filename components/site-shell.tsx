@@ -154,6 +154,18 @@ function Clientele() {
 
 function Gallery() {
   const [galleryPage, setGalleryPage] = useState(1);
+  const [mobileImage, setMobileImage] = useState(0);
+
+  const mobileImages = [
+    "/grid1/image1.png",
+    "/grid1/image2.png",
+    "/grid1/image3.png",
+    "/grid1/image4.png",
+    "/grid1/image5.png",
+    "/grid2/image6.png",
+    "/grid2/image7.png",
+    "/grid2/image8.jpg",
+  ];
 
   return (
     <section
@@ -181,119 +193,230 @@ function Gallery() {
 
       <div className="gallery-wrapper">
 
-        {/* ================= GRID 1 ================= */}
+        {/* ================================================= */}
+        {/* DESKTOP GALLERY                                   */}
+        {/* ================================================= */}
 
-        <div
-          className={`gallery-grid ${
-            galleryPage === 1 ? "gallery-active" : ""
-          }`}
-        >
-          <div className="gallery-image image1">
-            <Image
-              src="/grid1/image1.png"
-              alt="Project 1"
-              fill
-              sizes="100vw"
-            />
+        <div className="gallery-desktop">
+
+          {/* GRID 1 */}
+
+          <div
+            className={`gallery-grid ${
+              galleryPage === 1 ? "gallery-active" : ""
+            }`}
+          >
+            <div className="gallery-image image1">
+              <Image
+                src="/grid1/image1.png"
+                alt="Project 1"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image image2">
+              <Image
+                src="/grid1/image2.png"
+                alt="Project 2"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image image3">
+              <Image
+                src="/grid1/image3.png"
+                alt="Project 3"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image image4">
+              <Image
+                src="/grid1/image4.png"
+                alt="Project 4"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image image5">
+              <Image
+                src="/grid1/image5.png"
+                alt="Project 5"
+                fill
+                sizes="100vw"
+              />
+            </div>
           </div>
 
-          <div className="gallery-image image2">
-            <Image
-              src="/grid1/image2.png"
-              alt="Project 2"
-              fill
-              sizes="100vw"
-            />
+          {/* GRID 2 */}
+
+          <div
+            className={`gallery-grid gallery-grid-2 ${
+              galleryPage === 2 ? "gallery-active" : ""
+            }`}
+          >
+            <div className="gallery-image">
+              <Image
+                src="/grid2/image6.png"
+                alt="Project 6"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image">
+              <Image
+                src="/grid2/image7.png"
+                alt="Project 7"
+                fill
+                sizes="100vw"
+              />
+            </div>
+
+            <div className="gallery-image">
+              <Image
+                src="/grid2/image8.jpg"
+                alt="Project 8"
+                fill
+                sizes="100vw"
+              />
+            </div>
           </div>
 
-          <div className="gallery-image image3">
-            <Image
-              src="/grid1/image3.png"
-              alt="Project 3"
-              fill
-              sizes="100vw"
-            />
+          {/* Desktop Navigation */}
+
+          <div className="gallery-navigation">
+
+            {galleryPage === 2 && (
+              <button
+                className="gallery-arrow prev"
+                onClick={() => setGalleryPage(1)}
+                aria-label="Previous gallery"
+              >
+                <ChevronLeft />
+              </button>
+            )}
+
+            {galleryPage === 1 && (
+              <button
+                className="gallery-arrow next"
+                onClick={() => setGalleryPage(2)}
+                aria-label="Next gallery"
+              >
+                <ChevronRight />
+              </button>
+            )}
+
           </div>
 
-          <div className="gallery-image image4">
-            <Image
-              src="/grid1/image4.png"
-              alt="Project 4"
-              fill
-              sizes="100vw"
-            />
-          </div>
-
-          <div className="gallery-image image5">
-            <Image
-              src="/grid1/image5.png"
-              alt="Project 5"
-              fill
-              sizes="100vw"
-            />
-          </div>
         </div>
 
-        {/* ================= GRID 2 ================= */}
+        {/* ================================================= */}
+        {/* MOBILE GALLERY                                    */}
+        {/* ================================================= */}
 
-        <div
-          className={`gallery-grid gallery-grid-2 ${
-            galleryPage === 2 ? "gallery-active" : ""
-          }`}
-        >
-          <div className="gallery-image">
-            <Image
-              src="/grid2/image6.png"
-              alt="Project 6"
-              fill
-              sizes="100vw"
-            />
+        <div className="gallery-mobile">
+
+          <AnimatePresence mode="wait">
+
+            <motion.div
+              key={mobileImage}
+              className="gallery-mobile-image"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ duration: 0.25 }}
+              onDragEnd={(event, info) => {
+
+                if (info.offset.x < -80) {
+                  setMobileImage((prev) =>
+                    prev === mobileImages.length - 1
+                      ? 0
+                      : prev + 1
+                  );
+                }
+
+                if (info.offset.x > 80) {
+                  setMobileImage((prev) =>
+                    prev === 0
+                      ? mobileImages.length - 1
+                      : prev - 1
+                  );
+                }
+
+              }}
+            >
+
+              <Image
+                src={mobileImages[mobileImage]}
+                alt={`Project ${mobileImage + 1}`}
+                fill
+                sizes="100vw"
+                priority
+              />
+
+            </motion.div>
+
+          </AnimatePresence>
+
+          <div className="gallery-mobile-controls">
+
+            <button
+              className="gallery-arrow-mobile"
+              onClick={() =>
+                setMobileImage((prev) =>
+                  prev === 0
+                    ? mobileImages.length - 1
+                    : prev - 1
+                )
+              }
+              aria-label="Previous image"
+            >
+              <ChevronLeft />
+            </button>
+
+            <div className="gallery-dots">
+
+              {mobileImages.map((_, index) => (
+
+                <span
+                  key={index}
+                  className={
+                    mobileImage === index
+                      ? "active"
+                      : ""
+                  }
+                  onClick={() => setMobileImage(index)}
+                />
+
+              ))}
+
+            </div>
+
+            <button
+              className="gallery-arrow-mobile"
+              onClick={() =>
+                setMobileImage((prev) =>
+                  prev === mobileImages.length - 1
+                    ? 0
+                    : prev + 1
+                )
+              }
+              aria-label="Next image"
+            >
+              <ChevronRight />
+            </button>
+
           </div>
 
-          <div className="gallery-image">
-            <Image
-              src="/grid2/image7.png"
-              alt="Project 7"
-              fill
-              sizes="100vw"
-            />
-          </div>
-
-          <div className="gallery-image">
-            <Image
-              src="/grid2/image8.jpg"
-              alt="Project 8"
-              fill
-              sizes="100vw"
-            />
-          </div>
         </div>
-
-      </div>
-
-      {/* ================= NAVIGATION ================= */}
-
-      <div className="gallery-navigation">
-
-        {galleryPage === 2 && (
-          <button
-            className="gallery-arrow prev"
-            onClick={() => setGalleryPage(1)}
-            aria-label="Previous gallery"
-          >
-            <ChevronLeft />
-          </button>
-        )}
-
-        {galleryPage === 1 && (
-          <button
-            className="gallery-arrow next"
-            onClick={() => setGalleryPage(2)}
-            aria-label="Next gallery"
-          >
-            <ChevronRight />
-          </button>
-        )}
 
       </div>
 
@@ -497,7 +620,6 @@ function Footer() {
 
           <a href="#services">Crane Rental</a>
           <a href="#services">Pre-Owned Cranes & Parts</a>
-          <a href="#services">New Crane Procurement</a>
         </div>
 
         <div>
