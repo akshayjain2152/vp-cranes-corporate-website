@@ -164,8 +164,8 @@ function Gallery() {
     "/grid1/image5cropped.png",
     "/grid2/image6cropped.png",
     "/grid2/image7cropped.png",
-    "/grid2/image8cropped.png",
-    "/grid2/image9cropped.png",
+    "/grid2/image8cropped.jpg",
+    "/grid2/image9cropped.jpg",
   ];
 
   return (
