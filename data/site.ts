@@ -82,5 +82,5 @@ export const stats = [
 ] as const;
 
 export const companySchema = {
-  "@context": "https://schema.org", "@type": "Organization", name: "VP CRANES", url: "https://www.vpcranes.com", logo: "https://www.vpcranes.com/images/logo.png", description: "Heavy lifting, crane rental, pre-owned cranes, crane procurement, and specialised lifting solutions across India.", telephone: "+91-98931-80014", address: { "@type": "PostalAddress", streetAddress: "V P Cranes, Tiranga Chowk, Chowni Industrial Area", addressLocality: "Bhilai", postalCode: "490026", addressRegion: "Chhattisgarh", addressCountry: "IN" }, sameAs: [contact.whatsapp]
+  "@context": "https://schema.org", "@type": "Organization", name: "V P CRANES", url: "https://www.vpcranes.com", logo: "https://www.vpcranes.com/images/logo.png", description: "Heavy lifting, crane rental, pre-owned cranes, crane procurement, and specialised lifting solutions across India.", telephone: "+91-98931-80014", address: { "@type": "PostalAddress", streetAddress: "V P Cranes, Tiranga Chowk, Chowni Industrial Area", addressLocality: "Bhilai", postalCode: "490026", addressRegion: "Chhattisgarh", addressCountry: "IN" }, sameAs: [contact.whatsapp]
 };
