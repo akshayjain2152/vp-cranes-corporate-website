@@ -878,11 +878,11 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 
 .client-logo{
     width:120px;
-    height:70px;
+    height:90px;
 }
 
 .client-card img{
-    max-height:70px;
+    max-height:90px;
 }
 
 .client-name-only{
