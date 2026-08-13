@@ -872,7 +872,7 @@ text-align:center;}.stats>div{display:flex;flex-direction:column;align-items:cen
 .client-card{
     width:160px;
     min-width:160px;
-    height:140px;
+    height:160px;
 }
 
 .client-logo{
