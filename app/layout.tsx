@@ -11,12 +11,15 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   title: {
     default: "V P CRANES | Heavy Lifting, Done Right",
     template: "%s | V P CRANES",
   },
+
   description:
     "V P CRANES delivers dependable crane rental, heavy lifting, pre-owned crane sales, parts and new crane procurement throughout India.",
+
   keywords: [
     "crane rental",
     "heavy lifting",
@@ -26,14 +29,26 @@ export const metadata: Metadata = {
     "V P CRANES",
     "Bhilai",
   ],
+
   alternates: {
     canonical: "/",
   },
+
+  /* ===========================
+     FAVICON & APPLE ICON
+  =========================== */
+
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/icon.ico",
+    apple: "/apple-touch-icon.png",
   },
+
   manifest: "/manifest.webmanifest",
+
+  /* ===========================
+     OPEN GRAPH
+  =========================== */
+
   openGraph: {
     type: "website",
     url: siteUrl,
@@ -50,12 +65,22 @@ export const metadata: Metadata = {
       },
     ],
   },
+
+  /* ===========================
+     TWITTER
+  =========================== */
+
   twitter: {
     card: "summary",
     title: "V P CRANES | Heavy Lifting, Done Right",
     description:
       "Dependable crane rental and lifting solutions.",
   },
+
+  /* ===========================
+     SEARCH ENGINE SETTINGS
+  =========================== */
+
   robots: {
     index: true,
     follow: true,
