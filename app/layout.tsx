@@ -12,18 +12,18 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "VP CRANES | Heavy Lifting, Done Right",
-    template: "%s | VP CRANES",
+    default: "V P CRANES | Heavy Lifting, Done Right",
+    template: "%s | V P CRANES",
   },
   description:
-    "VP CRANES delivers dependable crane rental, heavy lifting, pre-owned crane sales, parts and new crane procurement throughout India.",
+    "V P CRANES delivers dependable crane rental, heavy lifting, pre-owned crane sales, parts and new crane procurement throughout India.",
   keywords: [
     "crane rental",
     "heavy lifting",
     "crawler crane",
     "mobile crane",
     "crane sales",
-    "VP Cranes",
+    "V P CRANES",
     "Bhilai",
   ],
   alternates: {
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: "VP CRANES",
-    title: "VP CRANES | Heavy Lifting, Done Right",
+    siteName: "V P CRANES",
+    title: "V P CRANES | Heavy Lifting, Done Right",
     description:
       "Safe, precise, dependable lifting solutions for India’s industrial and infrastructure projects.",
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: "/images/logo.png",
         width: 694,
         height: 694,
-        alt: "VP CRANES logo",
+        alt: "V P CRANES logo",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "VP CRANES | Heavy Lifting, Done Right",
+    title: "V P CRANES | Heavy Lifting, Done Right",
     description:
       "Dependable crane rental and lifting solutions.",
   },
